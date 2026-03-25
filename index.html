@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naomi & Sean — Against All Odds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --sage: #9CAF88;
+      --sage-light: #D4DFC7;
+      --sage-dark: #6B7F5E;
+      --cream: #FDF8F0;
+      --warm-white: #FFFDF9;
+      --gold: #C5A55A;
+      --gold-light: #E8D5A3;
+      --charcoal: #3A3A3A;
+      --text: #4A4A4A;
+      --text-light: #7A7A7A;
+      --blush: #F2E0D6;
+      --dusty-rose: #C9A9A6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.7;
+      font-weight: 400;
+      overflow-x: hidden;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      transition: all 0.4s ease;
+      background: transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(253, 248, 240, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+      padding: 0.6rem 2rem;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav.scrolled a { color: var(--charcoal); }
+    nav a:hover { color: var(--gold); }
+
+    nav .nav-monogram {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: 4px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: var(--cream);
+      color: var(--charcoal);
+      position: relative;
+      padding: 3rem 2rem 2rem;
+      overflow: hidden;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        url('photos/naomi-beer.png'),
+        url('photos/sean-hero.png');
+      background-position: left center, right center;
+      background-size: 50% auto;
+      background-repeat: no-repeat;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(253, 248, 240, 0.55);
+      backdrop-filter: brightness(1.05);
+    }
+
+    .hero-subtitle {
+      font-size: 0.8rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 .ampersand {
+      display: block;
+      font-size: 0.4em;
+      font-style: italic;
+      margin: 0.3em 0;
+      opacity: 0.8;
+    }
+
+    .hero-date {
+      font-size: 0.85rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-top: 1.5rem;
+      font-weight: 600;
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 2;
+    }
+
+    .scroll-indicator span {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: var(--charcoal);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* ── Sections ── */
+    section {
+      padding: 3rem 4rem;
+      max-width: 100%;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--sage);
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      text-align: center;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 1.5rem auto 3rem;
+    }
+
+    .body-text {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--text);
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .body-text + .body-text { margin-top: 1.5rem; }
+
+    .highlight {
+      color: var(--sage-dark);
+      font-weight: 500;
+    }
+
+    .quote-block {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      text-align: center;
+      color: var(--sage-dark);
+      max-width: 600px;
+      margin: 3rem auto;
+      line-height: 1.5;
+      position: relative;
+      padding: 0 2rem;
+    }
+
+    .quote-block::before {
+      content: '"';
+      font-size: 4rem;
+      position: absolute;
+      top: -1.5rem;
+      left: -0.5rem;
+      color: var(--sage-light);
+      font-style: normal;
+    }
+
+    /* ── Full-width accent band ── */
+    .accent-band {
+      background: var(--sage);
+      color: #fff;
+      padding: 2.5rem 2rem;
+      max-width: 100%;
+      text-align: center;
+    }
+
+    .accent-band .section-label { color: var(--sage-light); }
+    .accent-band .section-title { color: #fff; }
+    .accent-band .section-divider { background: var(--gold-light); }
+    .accent-band .body-text { color: rgba(255,255,255,0.9); }
+
+    /* ── Timeline ── */
+    .timeline {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--sage-light);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.35rem;
+      top: 0.5rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--sage);
+      border: 2px solid var(--cream);
+    }
+
+    .timeline-year {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .timeline-text {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--text-light);
+    }
+
+    /* ── Wedding Party Cards ── */
+    .party-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .party-card {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: var(--warm-white);
+      border: 1px solid rgba(197, 165, 90, 0.15);
+      border-radius: 2px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .party-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    }
+
+    .party-card .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .party-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 0.2rem;
+    }
+
+    .party-card .card-role {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .party-card p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* ── Details Grid ── */
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .detail-block {
+      text-align: center;
+      padding: 1.5rem 1rem;
+    }
+
+    .detail-block .detail-label {
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .detail-block .detail-icon {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .detail-block h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+    }
+
+    .detail-block p {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    .detail-block em {
+      color: var(--text-light);
+      font-size: 0.82rem;
+    }
+
+    /* ── Schedule ── */
+    .schedule-list {
+      max-width: 700px;
+      margin: 0 auto;
+      list-style: none;
+    }
+
+    .schedule-item {
+      display: flex;
+      align-items: baseline;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(156, 175, 136, 0.15);
+    }
+
+    .schedule-time {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--sage-dark);
+      min-width: 110px;
+    }
+
+    .schedule-event h4 {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      letter-spacing: 1px;
+    }
+
+    .schedule-event p {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-top: 0.2rem;
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(156, 175, 136, 0.15);
+      padding: 1.5rem 0;
+    }
+
+    .faq-question {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--sage);
+      transition: transform 0.3s;
+      font-weight: 300;
+    }
+
+    .faq-item.open .faq-question::after { transform: rotate(45deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding-top: 1rem;
+    }
+
+    .faq-answer p {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    /* ── RSVP ── */
+    .rsvp-section {
+      background: linear-gradient(165deg, var(--sage) 0%, var(--sage-dark) 100%);
+      color: #fff;
+      padding: 3rem 2rem;
+      max-width: 100%;
+      text-align: center;
+      position: relative;
+    }
+
+    .rsvp-section .section-label { color: var(--sage-light); }
+    .rsvp-section .section-title { color: #fff; }
+    .rsvp-section .section-divider { background: var(--gold-light); }
+
+    .rsvp-form {
+      max-width: 450px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 2px;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 400;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.45);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold-light);
+    }
+
+    .form-group select option { color: var(--charcoal); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+
+    .btn-rsvp {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: var(--gold);
+      color: #fff;
+      border: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 1rem;
+    }
+
+    .btn-rsvp:hover {
+      background: var(--gold-light);
+      color: var(--charcoal);
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem 2rem;
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.6);
+    }
+
+    footer .footer-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: #fff;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    footer .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--sage-light);
+      margin-bottom: 2rem;
+    }
+
+    footer p {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+    }
+
+    /* ── Photo Gallery ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 3px;
+      background: var(--warm-white);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .gallery-item img {
+        height: 220px;
+      }
+    }
+
+    .gallery-caption {
+      padding: 1rem 1.2rem;
+      text-align: center;
+    }
+
+    .gallery-caption p {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .gallery-caption .caption-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      font-style: normal;
+      margin-bottom: 0.3rem;
+    }
+
+    .gallery-feature {
+      grid-column: 1 / -1;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ── Easter Egg: Toast ── */
+    .ee-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--charcoal);
+      color: #fff;
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      z-index: 9000;
+      opacity: 0;
+      transition: all 0.4s ease;
+      pointer-events: none;
+      white-space: nowrap;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    .ee-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── Easter Egg: Confetti Overlay ── */
+    #confetti-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 8000;
+      pointer-events: none;
+    }
+
+    #confetti-overlay canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    #confetti-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 7vw, 4rem);
+      font-weight: 500;
+      color: var(--charcoal);
+      background: rgba(253, 248, 240, 0.92);
+      padding: 1.5rem 3rem;
+      border-radius: 4px;
+      text-align: center;
+      white-space: nowrap;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    #confetti-text.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    /* ── Easter Egg: Hidden Eggs + Bunny Apocalypse ── */
+    .site-egg {
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      opacity: 0.35;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
+      z-index: 20;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .site-egg:hover {
+      transform: scale(1.18) rotate(-10deg);
+      opacity: 0.9;
+    }
+
+    #bunny-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 8500;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    #bunny-overlay.active {
+      display: block;
+    }
+
+    .bunny {
+      position: absolute;
+      left: -8vw;
+      bottom: 0;
+      font-size: clamp(1.2rem, 2.2vw, 2rem);
+      animation: bunny-run linear forwards;
+      will-change: transform, left;
+    }
+
+    .bunny span {
+      font-size: 0.58em;
+      margin-left: 0.25rem;
+      color: #fff;
+      background: rgba(58,58,58,0.5);
+      padding: 0.1rem 0.35rem;
+      border-radius: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    @keyframes bunny-run {
+      0% { left: -12vw; transform: translateY(0) rotate(0deg); }
+      8% { transform: translateY(-18px) rotate(-6deg); }
+      16% { transform: translateY(0) rotate(0deg); }
+      24% { transform: translateY(-14px) rotate(5deg); }
+      32% { transform: translateY(0) rotate(0deg); }
+      40% { transform: translateY(-20px) rotate(-4deg); }
+      48% { transform: translateY(0) rotate(0deg); }
+      56% { transform: translateY(-12px) rotate(4deg); }
+      64% { transform: translateY(0) rotate(0deg); }
+      72% { transform: translateY(-16px) rotate(-4deg); }
+      80% { transform: translateY(0) rotate(0deg); }
+      88% { transform: translateY(-10px) rotate(3deg); }
+      100% { left: 108vw; transform: translateY(0) rotate(0deg); }
+    }
+
+    .love-bunny {
+      position: absolute;
+      top: 56%;
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-shadow: 0 8px 22px rgba(0,0,0,0.22);
+      opacity: 0;
+    }
+
+    .love-bunny.left {
+      left: 8%;
+      animation: bunny-love-left 5.4s ease forwards;
+    }
+
+    .love-bunny.right {
+      right: 8%;
+      animation: bunny-love-right 5.4s ease forwards;
+    }
+
+    @keyframes bunny-love-left {
+      0% { opacity: 0; transform: translateX(-20px) translateY(0); }
+      10% { opacity: 1; }
+      45% { transform: translateX(36vw) translateY(-20px); }
+      60% { transform: translateX(42vw) translateY(0); }
+      100% { opacity: 1; transform: translateX(42vw) translateY(0); }
+    }
+
+    @keyframes bunny-love-right {
+      0% { opacity: 0; transform: translateX(20px) translateY(0); }
+      10% { opacity: 1; }
+      45% { transform: translateX(-36vw) translateY(-20px); }
+      60% { transform: translateX(-42vw) translateY(0); }
+      100% { opacity: 1; transform: translateX(-42vw) translateY(0); }
+    }
+
+    #bunny-heart {
+      position: absolute;
+      top: 51%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: clamp(2.3rem, 5vw, 3.8rem);
+      opacity: 0;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,0.2));
+    }
+
+    #bunny-heart.show {
+      animation: bunny-heart-pop 1.6s ease forwards;
+    }
+
+    @keyframes bunny-heart-pop {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+      30% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+      60% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0.95; transform: translate(-50%, -50%) scale(1); }
+    }
+
+    /* ── Animations ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav ul { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+      nav a { font-size: 0.65rem; letter-spacing: 2px; }
+      section { padding: 2rem 1.5rem; max-width: 100%; }
+      .schedule-item { flex-direction: column; }
+      .schedule-time { margin-bottom: 0.3rem; }
+      .hero { padding: 2rem 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav ul { gap: 0.8rem; }
+      .nav-hide-mobile { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════ WELCOME POP-UP ════════════ -->
+<div id="welcome-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1.5rem;">
+  <div style="background:var(--cream);max-width:520px;width:90%;padding:3rem 2.5rem;border-radius:3px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--charcoal);font-weight:500;margin-bottom:1rem;">Congratulations!</p>
+    <p style="font-size:0.9rem;color:var(--text);line-height:1.8;margin-bottom:1.5rem;">
+      This is your engagement gift from Joe &amp; Bansri. We've taken "build a wedding website" off your list. All the content is made up for now - if you'd like to use it, just let us know what to change and we'll handle it.
+    </p>
+    <button onclick="document.getElementById('welcome-overlay').style.display='none'" style="font-family:'Montserrat',sans-serif;font-size:0.8rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2.5rem;background:var(--sage);color:#fff;border:none;cursor:pointer;border-radius:2px;font-weight:500;">Let's See It</button>
+  </div>
+</div>
+
+<!-- ════════════ NAVIGATION ════════════ -->
+<nav id="mainNav">
+  <ul>
+    <li><a href="#story" class="nav-hide-mobile">Our Story</a></li>
+    <li><a href="#details" class="nav-hide-mobile">Details</a></li>
+    <li><a class="nav-monogram" href="#top">N &amp; S</a></li>
+    <li><a href="#faq" class="nav-hide-mobile">FAQs</a></li>
+    <li><a href="#rsvp">RSVP</a></li>
+  </ul>
+</nav>
+
+<!-- ════════════ HERO ════════════ -->
+<section class="hero" id="top">
+  <button type="button" class="site-egg" style="top: 18%; left: 7%;" aria-label="Hidden egg">🥚</button>
+  <p class="hero-subtitle">The wedding of</p>
+  <h1>
+    Naomi
+    <span class="ampersand">&amp;</span>
+    <span id="sean-name" style="cursor:pointer">Sean</span>
+  </h1>
+  <p class="hero-date">The Tenth of April, Two Thousand and Twenty-Seven</p>
+  <p class="hero-tagline">Get ready to party!</p>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ════════════ OUR STORY ════════════ -->
+<section id="story">
+  <button type="button" class="site-egg" style="top: 14%; right: 8%;" aria-label="Hidden egg">🥚</button>
+  <p class="section-label fade-in">How It All Began</p>
+  <h2 class="section-title fade-in">Our Story</h2>
+  <div class="section-divider fade-in"></div>
+
+  <p class="body-text fade-in">
+    <span class="highlight">Naomi Priest</span> is a project manager - a woman who runs marathons, keeps complex systems on track, and radiates calm competence in all things.
+    <span class="highlight">Sean Gleeson</span> is a brilliant musician and teacher with a huge heart, an infectious laugh, and a gift for making every room he walks into more fun.
+    They met at <span class="highlight">Leeds Opera</span> - Naomi on stage, Sean conducting - and the rest is history.
+  </p>
+
+  <p class="body-text fade-in">
+    After a day of wine tasting in Portugal's <span class="highlight">Douro Valley</span>, Sean proposed at the top of a gorgeous vista on the 26th of July 2025. Naomi said yes before he'd even finished the question. At least that's how he tells it.
+  </p>
+</section>
+
+<!-- ════════════ DETAILS ════════════ -->
+<section id="details">
+  <button type="button" class="site-egg" style="top: 10%; left: 12%;" aria-label="Hidden egg">🥚</button>
+  <p class="section-label fade-in">The Important Bits</p>
+  <h2 class="section-title fade-in">Wedding Details</h2>
+  <div class="section-divider fade-in"></div>
+
+  <div class="details-grid">
+    <div class="detail-block fade-in">
+      <div class="detail-icon">📅</div>
+      <p class="detail-label">When</p>
+      <h3>Saturday, 10th April 2027</h3>
+      <em>Officially the best day of 2027</em>
+    </div>
+    <div class="detail-block fade-in">
+      <div class="detail-icon">🏡</div>
+      <p class="detail-label">Where</p>
+      <h3>The Normans</h3>
+      <p>Normans Farm, Bilbrough<br>York, YO23 3PQ</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ SCHEDULE ════════════ -->
+<section>
+  <button type="button" class="site-egg" style="top: 7%; right: 11%;" aria-label="Hidden egg">🥚</button>
+  <p class="section-label fade-in">On the Day</p>
+  <h2 class="section-title fade-in">Order of Events</h2>
+  <p class="body-text fade-in" style="margin-top: -0.5rem; font-style: italic; color: var(--text-light); font-size: 0.88rem;">(I'm completely guessing here)</p>
+  <div class="section-divider fade-in"></div>
+
+  <ul class="schedule-list">
+    <li class="schedule-item fade-in">
+      <span class="schedule-time">2:00 PM</span>
+      <div class="schedule-event">
+        <h4>Ceremony</h4>
+        <p>Two people, some vows, and at least one person crying. Probably Tony.</p>
+      </div>
+    </li>
+    <li class="schedule-item fade-in">
+      <span class="schedule-time">3:00 PM</span>
+      <div class="schedule-event">
+        <h4>Drinks Reception</h4>
+        <p>Champagne, canapes, and group photos in the beautiful grounds at The Normans.</p>
+      </div>
+    </li>
+    <li class="schedule-item fade-in">
+      <span class="schedule-time">5:00 PM</span>
+      <div class="schedule-event">
+        <h4 id="wedding-breakfast" style="cursor:pointer">Wedding Breakfast</h4>
+        <p>Three courses of something rather special. Details to follow.</p>
+      </div>
+    </li>
+    <li class="schedule-item fade-in">
+      <span class="schedule-time">6:30 PM</span>
+      <div class="schedule-event">
+        <h4>Speeches</h4>
+        <p>Sean will cry. Joe (the doctor, in case you forgot) will be savage. Tony and Mark will be dignified. Naomi will be epic. Get ready</p>
+      </div>
+    </li>
+    <li class="schedule-item fade-in">
+      <span class="schedule-time">8:00 PM</span>
+      <div class="schedule-event">
+        <h4>First Dance</h4>
+        <p>These two are going to absolutely nail it.</p>
+      </div>
+    </li>
+    <li class="schedule-item fade-in">
+      <span class="schedule-time">8:30 PM</span>
+      <div class="schedule-event">
+        <h4>Evening Reception</h4>
+        <p>Sean's mates take the stage. The band is made up of his musician friends and the dance floor is going to be epic.</p>
+      </div>
+    </li>
+    <li class="schedule-item fade-in">
+      <span class="schedule-time">Midnight</span>
+      <div class="schedule-event">
+        <h4>Carriages</h4>
+        <p>Home time. Please take all personal belongings and any remaining dignity.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ════════════ PHOTO GALLERY ════════════ -->
+<section id="gallery">
+  <button type="button" class="site-egg" style="top: 9%; right: 6%;" aria-label="Hidden egg">🥚</button>
+  <p class="section-label fade-in">Photographic Evidence</p>
+  <h2 class="section-title fade-in">Caught on Camera</h2>
+  <div class="section-divider fade-in"></div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item fade-in">
+      <img src="photos/naomi-disney.png" alt="Naomi celebrating at Disneyland">
+      <div class="gallery-caption">
+        <p class="caption-title">The Bride</p>
+        <p>Naomi at the happiest place on earth. Although the wedding might top it.</p>
+      </div>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="photos/sean-window.png" alt="Sean peering through a window with a baton">
+      <div class="gallery-caption">
+        <p class="caption-title">The Conductor</p>
+        <p>Sean spotted through a window, baton in hand. The man never stops. Genuinely brilliant at what he does.</p>
+      </div>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="photos/naomi-sean-race.png" alt="Naomi and Sean after finishing a 10K">
+      <div class="gallery-caption">
+        <p class="caption-title">The Runners</p>
+        <p>After smashing a 10K together. Half marathon next with Naomi's sisters. What a team.</p>
+      </div>
+    </div>
+    <div class="gallery-item fade-in">
+      <img src="photos/naomi-sean-friends.png" alt="Naomi and Sean doing a Friends pose">
+      <div class="gallery-caption">
+        <p class="caption-title">Could They BE Any More Suited?</p>
+        <p>Two people who are absolutely perfect for each other, acting daft on a greyhound statue. As one does.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ WEDDING PARTY ════════════ -->
+<section id="party">
+  <button type="button" class="site-egg" style="top: 12%; left: 7%;" aria-label="Hidden egg">🥚</button>
+  <p class="section-label fade-in">The Brave Volunteers</p>
+  <h2 class="section-title fade-in">Wedding Party</h2>
+  <div class="section-divider fade-in"></div>
+
+  <div class="party-grid" style="max-width: 500px;">
+    <div class="party-card fade-in">
+      <div class="card-icon">🤵</div>
+      <h3>Joe Gleeson-Buddhdev</h3>
+      <p class="card-role">Best Man</p>
+      <p>Sean's older brother. Also a doctor, which he will find a way to mention. Has been preparing the best man's speech since roughly 1997 and is alarmingly excited about it. Sean should be worried.</p>
+    </div>
+  </div>
+
+  <p class="body-text fade-in" style="margin-top: 2.5rem; font-style: italic; color: var(--text-light);">
+    There are more wonderful people in the wedding party, but Joe wasn't around when "his" engagement gift was being put together. So he's the only one who got a write-up. Perks of being the best man.
+  </p>
+</section>
+
+<!-- ════════════ FAQ ════════════ -->
+<section id="faq">
+  <button type="button" class="site-egg" style="top: 8%; left: 9%;" aria-label="Hidden egg">🥚</button>
+  <p class="section-label fade-in">You Might Be Wondering</p>
+  <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+  <div class="section-divider fade-in"></div>
+
+  <div class="faq-list">
+    <div class="faq-item fade-in">
+      <div class="faq-question">Can I bring a plus one?</div>
+      <div class="faq-answer">
+        <p>Maybe!</p>
+      </div>
+    </div>
+    <div class="faq-item fade-in">
+      <div class="faq-question">Are children welcome?</div>
+      <div class="faq-answer">
+        <p>Maybe!</p>
+      </div>
+    </div>
+    <div class="faq-item fade-in">
+      <div class="faq-question">What should I wear?</div>
+      <div class="faq-answer">
+        <p>Clothes!</p>
+      </div>
+    </div>
+    <div class="faq-item fade-in">
+      <div class="faq-question">Is there parking?</div>
+      <div class="faq-answer">
+        <p>Maybe!</p>
+      </div>
+    </div>
+    <div class="faq-item fade-in">
+      <div class="faq-question">What about gifts?</div>
+      <div class="faq-answer">
+        <p>We don't need another website - other gifts welcome though!</p>
+      </div>
+    </div>
+    <div class="faq-item fade-in">
+      <div class="faq-question">Will there be vegetarian options?</div>
+      <div class="faq-answer">
+        <p>Hopefully!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ RSVP ════════════ -->
+<div class="rsvp-section" id="rsvp">
+  <button type="button" class="site-egg" style="top: 10%; right: 9%;" aria-label="Hidden egg">🥚</button>
+  <p class="section-label fade-in">Don't Be Shy</p>
+  <h2 class="section-title fade-in">RSVP</h2>
+  <div class="section-divider fade-in"></div>
+
+  <p class="body-text fade-in" style="color: rgba(255,255,255,0.85); margin-bottom: 2.5rem;">
+    Please let us know if you can make it by the 1st of February.<br>
+    If you decline, Naomi and Sean will understand but Joe will eat your canapes.
+  </p>
+
+  <form class="rsvp-form fade-in" onsubmit="handleRSVP(event)">
+    <div class="form-group">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" placeholder="As it appears on the invitation, ideally">
+    </div>
+    <div class="form-group">
+      <label for="attendance">Will You Be Joining Us?</label>
+      <select id="attendance">
+        <option value="">Please select</option>
+        <option value="yes">Joyfully accepts! Wouldn't miss it</option>
+        <option value="no">Regretfully declines. Will think of you fondly</option>
+        <option value="joyfully-declines">Joyfully declines. Delighted for you from afar</option>
+        <option value="regretfully-accepts">Regretfully accepts. I suppose I'll have a great time</option>
+        <option value="maybe">It's complicated. Sean still owes me money</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="dietary">Dietary Requirements</label>
+      <input type="text" id="dietary" placeholder="Vegan, vegetarian, allergies, etc.">
+    </div>
+    <div class="form-group">
+      <label for="song">Song Request</label>
+      <textarea id="song" placeholder="The band does not take requests, we just want to judge your music taste"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="message">A Message for the Couple</label>
+      <textarea id="message" placeholder="Words of wisdom, a favourite memory, or anything you'd like to share..."></textarea>
+    </div>
+    <button type="submit" class="btn-rsvp" data-send-mode="love">Send With Love</button>
+    <button type="submit" class="btn-rsvp" data-send-mode="live">Send With Live</button>
+    <button type="submit" class="btn-rsvp" data-send-mode="laugh">Send With Laugh</button>
+  </form>
+</div>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <p class="footer-names">Naomi &amp; Sean</p>
+  <p class="footer-tagline">Two becoming one. We couldn't be happier.</p>
+  <p>10 · 04 · 2027</p>
+  <p style="margin-top: 1rem; font-size: 0.65rem; opacity: 0.5;">An engagement gift from Joe &amp; Bansri, with love (and very little restraint)</p>
+</footer>
+
+<!--
+  ╔══════════════════════════════════════════════════════╗
+  ║          🎉  SECRET EASTER EGGS  🎉                 ║
+  ╠══════════════════════════════════════════════════════╣
+  ║                                                      ║
+  ║  So you're the nosy type. We respect that.           ║
+  ║  Here's what you're looking for:                     ║
+  ║                                                      ║
+  ║  KEYBOARD TRIGGERS (just type while browsing):       ║
+  ║    joe        → Did someone say doctor?              ║
+  ║    haku       → Cat paw cursor for 10 seconds        ║
+  ║    doctor     → Joe in his element                   ║
+  ║    tony       → Father of the groom                  ║
+  ║    kerry      → The coolest Gleeson                  ║
+  ║    ann-marie  → Mother of the groom                  ║
+  ║    cute       → The Gleeson kids, once upon a time   ║
+  ║    strong     → A special video                      ║
+  ║    help       → Confetti!                            ║
+  ║                                                      ║
+  ║  OTHER TRIGGERS:                                     ║
+  ║    Konami code (↑↑↓↓←→←→BA) → The real MVP          ║
+  ║    Click "Sean" in the hero 3 times → Sad trombone   ║
+  ║    Shake your phone → Confetti!                      ║
+  ║    Click any tiny 🥚 on the page → Bunny apocalypse  ║
+  ║    Click "Wedding Breakfast" → Fruit rain 🍇🍏🫐    ║
+  ║    Tap the date 5 times → Countdown to the wedding   ║
+  ║    Rotate phone to landscape → A little message      ║
+  ║    Submit the RSVP form → A friendly disclaimer      ║
+  ║                                                      ║
+  ║  With love from Joe & Bansri x                       ║
+  ╚══════════════════════════════════════════════════════╝
+-->
+
+<div class="ee-toast" id="ee-toast"></div>
+
+<div id="confetti-overlay">
+  <canvas id="confetti-canvas"></canvas>
+  <div id="confetti-text">WE'RE GETTING MARRIED!</div>
+</div>
+
+<div id="bunny-overlay" aria-hidden="true">
+  <div class="love-bunny left">🐰<span>Sean</span></div>
+  <div class="love-bunny right">🐰<span>Naomi</span></div>
+  <div id="bunny-heart">💘</div>
+</div>
+
+<div id="annmarie-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:var(--cream); flex-direction:column; justify-content:center; align-items:center; cursor:pointer;" onclick="this.style.display='none'">
+  <img src="photos/ann-marie.png" alt="Ann-Marie" style="max-height:70vh; max-width:90vw; border-radius:4px; box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+  <p style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--charcoal); margin-top:1.5rem; font-style:italic;">Mother of the groom. Absolute queen.</p>
+  <p style="font-size:0.65rem; color:var(--sage); margin-top:2rem;">click anywhere to dismiss</p>
+</div>
+
+<div id="cute-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:var(--cream); flex-direction:column; justify-content:center; align-items:center; cursor:pointer;" onclick="this.style.display='none'">
+  <img src="photos/cute.png" alt="The Gleeson kids" style="max-height:70vh; max-width:90vw; border-radius:4px; box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+  <p style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--charcoal); margin-top:1.5rem; font-style:italic;">The originals.</p>
+  <p style="font-size:0.65rem; color:var(--sage); margin-top:2rem;">click anywhere to dismiss</p>
+</div>
+
+<div id="doctor-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:var(--cream); flex-direction:column; justify-content:center; align-items:center; cursor:pointer;" onclick="this.style.display='none'">
+  <img src="photos/doctor.png" alt="Joe" style="max-height:70vh; max-width:90vw; border-radius:4px; box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+  <p style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--charcoal); margin-top:1.5rem; font-style:italic;">Did someone say doctor?</p>
+  <p style="font-size:0.65rem; color:var(--sage); margin-top:2rem;">click anywhere to dismiss</p>
+</div>
+
+<div id="kerry-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:var(--cream); flex-direction:column; justify-content:center; align-items:center; cursor:pointer;" onclick="this.style.display='none'">
+  <img src="photos/kerry.png" alt="Kerry" style="max-height:70vh; max-width:90vw; border-radius:4px; box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+  <p style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--charcoal); margin-top:1.5rem; font-style:italic;">The coolest Gleeson. Not even close.</p>
+  <p style="font-size:0.65rem; color:var(--sage); margin-top:2rem;">click anywhere to dismiss</p>
+</div>
+
+<div id="tony-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:var(--cream); flex-direction:column; justify-content:center; align-items:center; cursor:pointer;" onclick="this.style.display='none'">
+  <img src="photos/tony.png" alt="Tony" style="max-height:70vh; max-width:90vw; border-radius:4px; box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+  <p style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--charcoal); margin-top:1.5rem; font-style:italic;">Father of the groom. Legend.</p>
+  <p style="font-size:0.65rem; color:var(--sage); margin-top:2rem;">click anywhere to dismiss</p>
+</div>
+
+<div id="strong-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(58,58,58,0.85); flex-direction:column; justify-content:center; align-items:center; cursor:pointer; backdrop-filter:blur(4px);" onclick="this.style.display='none'; this.querySelector('video').pause();">
+  <video src="photos/strong.mp4" style="max-height:75vh; max-width:90vw; border-radius:4px; box-shadow:0 20px 60px rgba(0,0,0,0.3);" playsinline></video>
+  <p style="font-size:0.65rem; color:rgba(255,255,255,0.5); margin-top:1.5rem;">click anywhere to dismiss</p>
+</div>
+
+<div id="konami-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:var(--cream); flex-direction:column; justify-content:center; align-items:center; cursor:pointer;" onclick="this.style.display='none'">
+  <img src="photos/bansri.png" alt="The real architect of this website" style="max-height:70vh; max-width:90vw; border-radius:4px; box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+  <p style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--charcoal); margin-top:1.5rem; font-style:italic;">You're welcome.</p>
+  <p style="font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--text-light); margin-top:0.5rem;">— Bansri, the brains behind this operation</p>
+  <p style="font-size:0.65rem; color:var(--sage); margin-top:2rem;">click anywhere to dismiss</p>
+</div>
+
+<script>
+  // ── Easter Egg: Click Sean's name 3 times for trombone ──
+  let seanClicks = 0;
+  let seanClickTimer = null;
+  document.getElementById('sean-name').addEventListener('click', () => {
+    seanClicks++;
+    clearTimeout(seanClickTimer);
+    seanClickTimer = setTimeout(() => { seanClicks = 0; }, 800);
+    if (seanClicks >= 3) {
+      seanClicks = 0;
+      playSadTrombone();
+    }
+  });
+
+  function playSadTrombone() {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const notes = [
+      { freq: 392, start: 0, dur: 0.35 },
+      { freq: 370, start: 0.35, dur: 0.35 },
+      { freq: 349, start: 0.7, dur: 0.35 },
+      { freq: 311, start: 1.05, dur: 0.8 },
+    ];
+    notes.forEach(n => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(n.freq, ctx.currentTime + n.start);
+      gain.gain.setValueAtTime(0.3, ctx.currentTime + n.start);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + n.start + n.dur);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(ctx.currentTime + n.start);
+      osc.stop(ctx.currentTime + n.start + n.dur);
+    });
+  }
+
+  // ── Easter Egg: Type "joe" for doctor toast ──
+  // ── Easter Egg: Type "haku" for cat paw cursor ──
+  let typedKeys = '';
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
+
+    typedKeys += e.key.toLowerCase();
+    if (typedKeys.length > 20) typedKeys = typedKeys.slice(-20);
+
+    if (typedKeys.endsWith('joe')) {
+      typedKeys = '';
+      showToast('Did someone say doctor? 🩺');
+    }
+    if (typedKeys.endsWith('haku')) {
+      typedKeys = '';
+      activateCatPaw();
+    }
+    if (typedKeys.endsWith('ann-marie') || typedKeys.endsWith('annmarie')) {
+      typedKeys = '';
+      document.getElementById('annmarie-overlay').style.display = 'flex';
+    }
+    if (typedKeys.endsWith('cute')) {
+      typedKeys = '';
+      document.getElementById('cute-overlay').style.display = 'flex';
+    }
+    if (typedKeys.endsWith('doctor')) {
+      typedKeys = '';
+      document.getElementById('doctor-overlay').style.display = 'flex';
+    }
+    if (typedKeys.endsWith('kerry')) {
+      typedKeys = '';
+      document.getElementById('kerry-overlay').style.display = 'flex';
+    }
+    if (typedKeys.endsWith('tony')) {
+      typedKeys = '';
+      document.getElementById('tony-overlay').style.display = 'flex';
+    }
+    if (typedKeys.endsWith('strong')) {
+      typedKeys = '';
+      const overlay = document.getElementById('strong-overlay');
+      const video = overlay.querySelector('video');
+      overlay.style.display = 'flex';
+      video.currentTime = 0;
+      video.play();
+    }
+    if (typedKeys.endsWith('help')) {
+      typedKeys = '';
+      fireConfetti();
+    }
+  });
+
+  function showToast(msg) {
+    const toast = document.getElementById('ee-toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+
+  function activateCatPaw() {
+    const pawSvg = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='22' rx='8' ry='7' fill='%23c9a9a6'/%3E%3Cellipse cx='9' cy='12' rx='3.5' ry='4' fill='%23c9a9a6'/%3E%3Cellipse cx='16' cy='10' rx='3.5' ry='4' fill='%23c9a9a6'/%3E%3Cellipse cx='23' cy='12' rx='3.5' ry='4' fill='%23c9a9a6'/%3E%3Cellipse cx='16' cy='22' rx='5' ry='4.5' fill='%23d4bfbc'/%3E%3C/svg%3E") 16 16, auto`;
+    document.body.style.cursor = pawSvg;
+    document.querySelectorAll('a, button, .faq-question, #sean-name').forEach(el => {
+      el.dataset.prevCursor = el.style.cursor;
+      el.style.cursor = pawSvg;
+    });
+    showToast('🐱 Haku says hello');
+    setTimeout(() => {
+      document.body.style.cursor = '';
+      document.querySelectorAll('a, button, .faq-question, #sean-name').forEach(el => {
+        el.style.cursor = el.dataset.prevCursor || '';
+      });
+    }, 10000);
+  }
+
+  // ── Easter Egg: Shake phone for confetti ──
+  let shakeThreshold = 25;
+  let lastX = null, lastY = null, lastZ = null;
+  let shakeTimeout = null;
+  let confettiCooldown = false;
+
+  window.addEventListener('devicemotion', (e) => {
+    if (confettiCooldown) return;
+    const { x, y, z } = e.accelerationIncludingGravity || {};
+    if (lastX !== null) {
+      const delta = Math.abs(x - lastX) + Math.abs(y - lastY) + Math.abs(z - lastZ);
+      if (delta > shakeThreshold) {
+        confettiCooldown = true;
+        fireConfetti();
+        setTimeout(() => { confettiCooldown = false; }, 6000);
+      }
+    }
+    lastX = x; lastY = y; lastZ = z;
+  });
+
+  function fireConfetti() {
+    const overlay = document.getElementById('confetti-overlay');
+    const canvas = document.getElementById('confetti-canvas');
+    const textEl = document.getElementById('confetti-text');
+    const ctx = canvas.getContext('2d');
+    overlay.style.display = 'block';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colours = ['#9CAF88','#C5A55A','#E8D5A3','#C9A9A6','#D4DFC7','#F2E0D6','#fff','#E63946','#D62839','#C1121F'];
+    const confettiPieces = Array.from({ length: 380 }, () => ({
+      type: 'confetti',
+      x: Math.random() * canvas.width,
+      y: -20 - Math.random() * canvas.height * 0.5,
+      w: 4 + Math.random() * 6,
+      h: 8 + Math.random() * 10,
+      colour: colours[Math.floor(Math.random() * colours.length)],
+      vy: 2 + Math.random() * 3,
+      vx: (Math.random() - 0.5) * 2,
+      rot: Math.random() * Math.PI * 2,
+      rv: (Math.random() - 0.5) * 0.15,
+    }));
+    const rosePieces = Array.from({ length: 28 }, () => ({
+      type: 'rose',
+      x: Math.random() * canvas.width,
+      y: -30 - Math.random() * canvas.height * 0.4,
+      size: 18 + Math.random() * 14,
+      vy: 1.5 + Math.random() * 2.5,
+      vx: (Math.random() - 0.5) * 1.8,
+      rot: Math.random() * Math.PI * 2,
+      rv: (Math.random() - 0.5) * 0.08,
+    }));
+    const pieces = [...confettiPieces, ...rosePieces];
+
+    setTimeout(() => textEl.classList.add('show'), 200);
+
+    let frame = 0;
+    const maxFrames = 280;
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += (p.rv || 0);
+        if (p.type === 'confetti') {
+          p.vy += 0.04;
+        } else {
+          p.vy += 0.03;
+        }
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        if (p.type === 'rose') {
+          ctx.font = `${p.size}px serif`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('🌹', 0, 0);
+        } else {
+          ctx.fillStyle = p.colour;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        }
+        ctx.restore();
+      });
+      frame++;
+      if (frame < maxFrames) {
+        requestAnimationFrame(draw);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        textEl.classList.remove('show');
+        overlay.style.display = 'none';
+      }
+    }
+    draw();
+  }
+
+  // ── Easter Egg: Click Wedding Breakfast for fruit rain ──
+  function fruitRain() {
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:8000;pointer-events:none;overflow:hidden;';
+    const canvas = document.createElement('canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    overlay.appendChild(canvas);
+    document.body.appendChild(overlay);
+
+    const ctx = canvas.getContext('2d');
+    const fruits = ['🍇', '🍏', '🫐'];
+    const pieces = [];
+    for (let i = 0; i < 85; i++) {
+      pieces.push({
+        emoji: fruits[Math.floor(Math.random() * fruits.length)],
+        x: Math.random() * canvas.width,
+        y: -30 - Math.random() * 200,
+        size: 36 + Math.random() * 24,
+        vy: 1.2 + Math.random() * 1.8,
+        vx: (Math.random() - 0.5) * 1.2,
+        rot: Math.random() * Math.PI * 2,
+        rv: (Math.random() - 0.5) * 0.05,
+      });
+    }
+
+    let frame = 0;
+    const maxFrames = 280;
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.rv;
+        p.vy += 0.035;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.font = `${p.size}px serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(p.emoji, 0, 0);
+        ctx.restore();
+      });
+      frame++;
+      if (frame < maxFrames) {
+        requestAnimationFrame(draw);
+      } else {
+        overlay.remove();
+      }
+    }
+    draw();
+  }
+
+  document.getElementById('wedding-breakfast').addEventListener('click', fruitRain);
+
+  // ── Easter Egg: Click tiny eggs for bunny apocalypse ──
+  let bunnyRampage = false;
+  let bunnyMusicCtx = null;
+
+  function spawnBunny(overlay) {
+    const bunny = document.createElement('div');
+    bunny.className = 'bunny';
+    bunny.textContent = '🐰';
+    const lane = Math.random() * 82;
+    bunny.style.bottom = `${lane}%`;
+    bunny.style.animationDuration = `${4 + Math.random() * 4.5}s`;
+    bunny.style.animationDelay = `${Math.random() * 1.8}s`;
+    overlay.appendChild(bunny);
+    setTimeout(() => bunny.remove(), 9000);
+  }
+
+  function playGarishCelebrationMusic(durationMs = 9500) {
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return;
+    bunnyMusicCtx = new Ctx();
+    const ctx = bunnyMusicCtx;
+    const start = ctx.currentTime + 0.05;
+    const beat = 0.17;
+    const base = [262, 330, 392, 523];
+
+    for (let i = 0; i < 56; i++) {
+      const t = start + i * beat;
+      const root = base[i % base.length] * (i % 2 ? 1 : 2);
+
+      const oscA = ctx.createOscillator();
+      const oscB = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      oscA.type = 'sawtooth';
+      oscB.type = 'square';
+      oscA.frequency.setValueAtTime(root, t);
+      oscB.frequency.setValueAtTime(root * 1.5, t);
+
+      gain.gain.setValueAtTime(0.0001, t);
+      gain.gain.exponentialRampToValueAtTime(0.16, t + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + beat);
+
+      oscA.connect(gain);
+      oscB.connect(gain);
+      gain.connect(ctx.destination);
+
+      oscA.start(t);
+      oscB.start(t);
+      oscA.stop(t + beat);
+      oscB.stop(t + beat);
+    }
+
+    setTimeout(() => {
+      if (bunnyMusicCtx) {
+        bunnyMusicCtx.close();
+        bunnyMusicCtx = null;
+      }
+    }, durationMs + 300);
+  }
+
+  function startBunnyApocalypse() {
+    if (bunnyRampage) return;
+    bunnyRampage = true;
+    const overlay = document.getElementById('bunny-overlay');
+    const heart = document.getElementById('bunny-heart');
+    const lovers = overlay.querySelectorAll('.love-bunny');
+
+    overlay.classList.add('active');
+    heart.classList.remove('show');
+    overlay.querySelectorAll('.bunny').forEach(b => b.remove());
+    lovers.forEach(l => {
+      l.style.animation = 'none';
+      void l.offsetHeight;
+      l.style.animation = '';
+    });
+
+    for (let i = 0; i < 140; i++) spawnBunny(overlay);
+    setTimeout(() => heart.classList.add('show'), 3200);
+    showToast('BUNNY APOCALYPSE ACTIVATED 🐰');
+    playGarishCelebrationMusic();
+
+    setTimeout(() => {
+      overlay.classList.remove('active');
+      heart.classList.remove('show');
+      overlay.querySelectorAll('.bunny').forEach(b => b.remove());
+      bunnyRampage = false;
+    }, 9800);
+  }
+
+  document.querySelectorAll('.site-egg').forEach(egg => {
+    egg.addEventListener('click', startBunnyApocalypse);
+  });
+
+  // Konami code
+  const konamiSequence = [38,38,40,40,37,39,37,39,66,65];
+  let konamiIndex = 0;
+  document.addEventListener('keydown', (e) => {
+    if (e.keyCode === konamiSequence[konamiIndex]) {
+      konamiIndex++;
+      if (konamiIndex === konamiSequence.length) {
+        document.getElementById('konami-overlay').style.display = 'flex';
+        konamiIndex = 0;
+      }
+    } else {
+      konamiIndex = 0;
+    }
+  });
+
+  // Tap date 5 times → countdown
+  let dateTapCount = 0;
+  let dateTapTimer;
+  document.querySelector('.hero-date').addEventListener('click', () => {
+    dateTapCount++;
+    clearTimeout(dateTapTimer);
+    dateTapTimer = setTimeout(() => { dateTapCount = 0; }, 1500);
+    if (dateTapCount >= 5) {
+      dateTapCount = 0;
+      const wedding = new Date('2027-04-10');
+      const now = new Date();
+      const days = Math.ceil((wedding - now) / (1000 * 60 * 60 * 24));
+      showToast(`${days} days to go! 🥂`);
+    }
+  });
+
+  // Landscape orientation toast
+  window.addEventListener('orientationchange', () => {
+    setTimeout(() => {
+      if (window.innerWidth > window.innerHeight) {
+        showToast('Wrong way round, but we respect the commitment');
+      }
+    }, 300);
+  });
+
+  // Nav scroll effect
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // Fade-in on scroll
+  const observerOpts = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOpts);
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // FAQ toggle
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      q.parentElement.classList.toggle('open');
+    });
+  });
+
+  // RSVP handler
+  function handleRSVP(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    if (!name.trim()) return;
+    const sendMode = e.submitter?.dataset?.sendMode || 'love';
+    let modeLine = 'Classic. Romantic. Dependable.';
+    if (sendMode === 'live') {
+      modeLine = 'Bold choice. Slight typo energy. We respect it.';
+    } else if (sendMode === 'laugh') {
+      modeLine = 'Excellent. Correct vibe. Ten out of ten banter.';
+    }
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(58,58,58,0.6);display:flex;justify-content:center;align-items:center;cursor:pointer;backdrop-filter:blur(4px);';
+    overlay.innerHTML = `
+      <div style="background:var(--cream);max-width:480px;width:90%;padding:3rem 2.5rem;border-radius:3px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--charcoal);font-weight:300;margin-bottom:1rem;">Hold on a moment</p>
+        <p style="font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--sage);margin-bottom:1rem;">
+          ${modeLine}
+        </p>
+        <p style="font-size:0.9rem;color:var(--text);line-height:1.8;margin-bottom:1.5rem;">
+          This website is an engagement gift from Joe &amp; Bansri and is <strong>not</strong> the official wedding RSVP.
+          Your response hasn't actually gone anywhere. Please don't panic.
+        </p>
+        <p style="font-size:0.88rem;color:var(--text-light);line-height:1.7;margin-bottom:1.5rem;">
+          The real invitations will be coming separately. When they do, please RSVP through the proper channel so Naomi can do her project-manager thing.
+        </p>
+        <p style="font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);cursor:pointer;">Click anywhere to close</p>
+      </div>
+    `;
+    overlay.addEventListener('click', () => overlay.remove());
+    document.body.appendChild(overlay);
+  }
+</script>
+
+</body>
+</html>
