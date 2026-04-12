@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Naomi and Sean</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -34,6 +35,118 @@
       line-height: 1.7;
       font-weight: 400;
       overflow-x: hidden;
+    }
+
+    body.site-gate-open {
+      overflow: hidden;
+    }
+
+    /* ── Site password gate (browser-only; not secret from someone who reads the page source) ── */
+    .site-gate {
+      position: fixed;
+      inset: 0;
+      z-index: 10001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: rgba(58, 58, 58, 0.4);
+      backdrop-filter: blur(8px);
+    }
+
+    .site-gate.hidden {
+      display: none;
+    }
+
+    .site-gate-inner {
+      background: var(--cream);
+      max-width: 400px;
+      width: 100%;
+      padding: 2.5rem 2rem;
+      border-radius: 3px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+    }
+
+    .site-gate-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 0.5rem;
+    }
+
+    .site-gate-sub {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    #site-gate-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: left;
+    }
+
+    #site-gate-input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(156, 175, 136, 0.45);
+      border-radius: 2px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      background: var(--warm-white);
+      color: var(--charcoal);
+    }
+
+    #site-gate-input:focus {
+      outline: none;
+      border-color: var(--sage);
+    }
+
+    #site-gate-input::placeholder {
+      color: var(--text-light);
+      opacity: 0.75;
+    }
+
+    .site-gate-btn {
+      padding: 0.9rem 1.5rem;
+      background: var(--sage);
+      color: #fff;
+      border: none;
+      border-radius: 2px;
+      font-family: inherit;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.25s ease;
+    }
+
+    .site-gate-btn:hover {
+      background: var(--sage-dark);
+    }
+
+    .site-gate-err {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #a94442;
+      line-height: 1.5;
+    }
+
+    .site-gate-sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* ── Navigation ── */
@@ -76,10 +189,19 @@
     nav a:hover { color: var(--gold); }
 
     nav .nav-monogram {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 500;
-      letter-spacing: 4px;
+      display: flex;
+      align-items: center;
+      line-height: 0;
+    }
+
+    nav .nav-monogram img {
+      height: 1.4rem;
+      width: auto;
+      display: block;
+    }
+
+    nav a.nav-monogram:hover img {
+      opacity: 0.82;
     }
 
     /* ── Hero ── */
@@ -151,8 +273,26 @@
       font-size: 0.85rem;
       letter-spacing: 5px;
       text-transform: uppercase;
-      margin-top: 1.5rem;
+      margin-top: 1rem;
       font-weight: 600;
+      max-width: 34rem;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 1.2rem;
+      line-height: 1.55;
+      text-align: center;
+      color: var(--charcoal);
+    }
+
+    .hero-date a.map-link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hero-date a.map-link:visited,
+    .hero-date a.map-link:hover,
+    .hero-date a.map-link:active {
+      color: inherit;
     }
 
     .hero-tagline {
@@ -391,64 +531,6 @@
       line-height: 1.7;
     }
 
-    /* ── Details Grid ── */
-    .details-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .detail-block {
-      text-align: center;
-      padding: 1.5rem 1rem;
-    }
-
-    .detail-block .detail-label {
-      font-size: 0.7rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--sage);
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-    }
-
-    .detail-block .detail-icon {
-      font-size: 2rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .detail-block h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: var(--charcoal);
-      margin-bottom: 0.4rem;
-    }
-
-    .detail-block p {
-      font-size: 0.88rem;
-      color: var(--text-light);
-      line-height: 1.7;
-    }
-
-    .detail-block em {
-      color: var(--text-light);
-      font-size: 0.82rem;
-    }
-
-    .detail-block a.map-link {
-      color: inherit;
-      text-decoration: underline;
-      text-underline-offset: 0.12em;
-    }
-    .detail-block a.map-link:visited,
-    .detail-block a.map-link:hover,
-    .detail-block a.map-link:active {
-      color: inherit;
-    }
-
     /* ── Schedule ── */
     .schedule-list {
       max-width: 700px;
@@ -624,20 +706,12 @@
       color: rgba(255,255,255,0.6);
     }
 
-    footer .footer-names {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      color: #fff;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-
     footer .footer-tagline {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: 1rem;
       color: var(--sage-light);
-      margin-bottom: 2rem;
+      margin-bottom: 0;
     }
 
     footer p {
@@ -929,12 +1003,25 @@
 </head>
 <body>
 
+<div id="site-gate" class="site-gate" role="dialog" aria-modal="true" aria-labelledby="site-gate-title">
+  <div class="site-gate-inner">
+    <p id="site-gate-title" class="site-gate-heading">Naomi &amp; Sean</p>
+    <p class="site-gate-sub">Please enter the password from your invitation.</p>
+    <form id="site-gate-form" novalidate>
+      <label class="site-gate-sr-only" for="site-gate-input">Password</label>
+      <input type="password" id="site-gate-input" name="password" autocomplete="current-password" placeholder="Password" required>
+      <button type="submit" class="site-gate-btn">Enter</button>
+    </form>
+    <p id="site-gate-err" class="site-gate-err" hidden></p>
+  </div>
+</div>
+
 <!-- ════════════ NAVIGATION ════════════ -->
 <nav id="mainNav">
   <ul>
     <li><a href="#story" class="nav-hide-mobile">Our Story</a></li>
-    <li><a href="#details" class="nav-hide-mobile">Details</a></li>
-    <li><a class="nav-monogram" href="#top">N &amp; S</a></li>
+    <li><a href="#party" class="nav-hide-mobile">Wedding Party</a></li>
+    <li><a class="nav-monogram" href="#top" aria-label="Naomi and Sean, back to top"><img src="monogram.svg" alt="" width="96" height="32" decoding="async"></a></li>
     <li><a href="#faq" class="nav-hide-mobile">FAQs</a></li>
     <li><a href="#rsvp">RSVP</a></li>
   </ul>
@@ -949,6 +1036,9 @@
     <span class="ampersand">&amp;</span>
     <span id="sean-name" style="cursor:pointer">Sean</span>
   </h1>
+  <p class="hero-date">
+    <a class="map-link" href="https://www.google.co.uk/maps/place/The+Normans/@53.9206306,-1.204163,17z/data=!3m1!4b1!4m6!3m5!1s0x4879379a3c97f187:0x98ac68200f25bb2e!8m2!3d53.9206275!4d-1.2015881!16s%2Fg%2F11cjkp5fbp?entry=ttu&amp;g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">The Normans, YO23 3PQ</a>
+  </p>
   <p class="hero-date">Saturday 10th April, 2027</p>
   <p class="hero-tagline">Get ready to party!</p>
   <div class="scroll-indicator">
@@ -982,29 +1072,6 @@
   <p class="body-text fade-in">
     After a day of wine tasting in Portugal's <span class="highlight">Douro Valley</span>, Sean proposed at the top of a gorgeous vista on the 26th July 2025. Naomi said yes before he'd even finished the question. At least that's how he tells it.
   </p>
-</section>
-
-<!-- ════════════ DETAILS ════════════ -->
-<section id="details">
-  <button type="button" class="site-egg" style="top: 10%; left: 12%;" aria-label="Hidden egg">🥚</button>
-  <p class="section-label fade-in">The Important Bits</p>
-  <h2 class="section-title fade-in">Wedding Details</h2>
-  <div class="section-divider fade-in"></div>
-
-  <div class="details-grid">
-    <div class="detail-block fade-in">
-      <div class="detail-icon">📅</div>
-      <p class="detail-label">When</p>
-      <h3>Saturday, 10th April 2027</h3>
-      <em>Officially the best day of 2027</em>
-    </div>
-    <div class="detail-block fade-in">
-      <div class="detail-icon">🏡</div>
-      <p class="detail-label">Where</p>
-      <h3><a class="map-link" href="https://www.google.co.uk/maps/place/The+Normans/@53.9206306,-1.204163,17z/data=!3m1!4b1!4m6!3m5!1s0x4879379a3c97f187:0x98ac68200f25bb2e!8m2!3d53.9206275!4d-1.2015881!16s%2Fg%2F11cjkp5fbp?entry=ttu&amp;g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">The Normans</a></h3>
-      <p>Normans Farm, Bilbrough<br>York, YO23 3PQ</p>
-    </div>
-  </div>
 </section>
 
 <!-- ════════════ SCHEDULE ════════════ -->
@@ -1086,18 +1153,6 @@
 
   <div class="faq-list">
     <div class="faq-item fade-in">
-      <div class="faq-question">Can I bring a plus one?</div>
-      <div class="faq-answer">
-        <p>Maybe!</p>
-      </div>
-    </div>
-    <div class="faq-item fade-in">
-      <div class="faq-question">Are children welcome?</div>
-      <div class="faq-answer">
-        <p>Maybe!</p>
-      </div>
-    </div>
-    <div class="faq-item fade-in">
       <div class="faq-question">What should I wear?</div>
       <div class="faq-answer">
         <p>Clothes!</p>
@@ -1106,19 +1161,13 @@
     <div class="faq-item fade-in">
       <div class="faq-question">Is there parking?</div>
       <div class="faq-answer">
-        <p>Maybe!</p>
+        <p>Yes there will be parking at the venue</p>
       </div>
     </div>
     <div class="faq-item fade-in">
-      <div class="faq-question">What about gifts?</div>
+      <div class="faq-question">Is there a gift registry?</div>
       <div class="faq-answer">
-        <p>We don't need another website - other gifts welcome though!</p>
-      </div>
-    </div>
-    <div class="faq-item fade-in">
-      <div class="faq-question">Will there be vegetarian options?</div>
-      <div class="faq-answer">
-        <p>Hopefully!</p>
+        <p>We are not expecting presents, but if you would like to give something, we would love a contribution towards our honeymoon. Bank details to follow.</p>
       </div>
     </div>
   </div>
@@ -1147,9 +1196,6 @@
         <option value="">Please select</option>
         <option value="yes">Joyfully accepts! Wouldn't miss it</option>
         <option value="no">Regretfully declines. Will think of you fondly</option>
-        <option value="joyfully-declines">Joyfully declines. Delighted for you from afar</option>
-        <option value="regretfully-accepts">Regretfully accepts. I suppose I'll have a great time</option>
-        <option value="maybe">It's complicated. Sean still owes me money</option>
       </select>
     </div>
     <div class="form-group">
@@ -1158,24 +1204,20 @@
     </div>
     <div class="form-group">
       <label for="song">Song Request</label>
-      <textarea id="song" placeholder="The band does not take requests, we just want to judge your music taste"></textarea>
+      <textarea id="song" placeholder="Suggest a track to add to the playlist"></textarea>
     </div>
     <div class="form-group">
       <label for="message">A Message for the Couple</label>
       <textarea id="message" placeholder="Words of wisdom, a favourite memory, or anything you'd like to share..."></textarea>
     </div>
-    <button type="submit" class="btn-rsvp" data-send-mode="live">Send With Live</button>
-    <button type="submit" class="btn-rsvp" data-send-mode="laugh">Send With Laugh</button>
-    <button type="submit" class="btn-rsvp" data-send-mode="love">Send With Love</button>
+    <button type="submit" class="btn-rsvp">Submit</button>
   </form>
 </div>
 
 <!-- ════════════ FOOTER ════════════ -->
 <footer>
-  <p class="footer-names">Naomi &amp; Sean</p>
-  <p class="footer-tagline">Two becoming one. We couldn't be happier.</p>
-  <p>10 · 04 · 2027</p>
-  <p style="margin-top: 1rem; font-size: 0.65rem; opacity: 0.5;">An engagement gift from Joe &amp; Bansri, with love (and very little restraint)</p>
+  <p class="footer-tagline">We can't wait to celebrate with you</p>
+  <p style="margin-top: 1rem; font-size: 0.65rem; opacity: 0.5;">Let's partayy</p>
 </footer>
 
 <!--
@@ -1636,20 +1678,22 @@
     }
   });
 
-  // Tap date 5 times → countdown
+  // Tap either hero date line 5 times → countdown
   let dateTapCount = 0;
   let dateTapTimer;
-  document.querySelector('.hero-date').addEventListener('click', () => {
-    dateTapCount++;
-    clearTimeout(dateTapTimer);
-    dateTapTimer = setTimeout(() => { dateTapCount = 0; }, 1500);
-    if (dateTapCount >= 5) {
-      dateTapCount = 0;
-      const wedding = new Date('2027-04-10');
-      const now = new Date();
-      const days = Math.ceil((wedding - now) / (1000 * 60 * 60 * 24));
-      showToast(`${days} days to go! 🥂`);
-    }
+  document.querySelectorAll('.hero-date').forEach((el) => {
+    el.addEventListener('click', () => {
+      dateTapCount++;
+      clearTimeout(dateTapTimer);
+      dateTapTimer = setTimeout(() => { dateTapCount = 0; }, 1500);
+      if (dateTapCount >= 5) {
+        dateTapCount = 0;
+        const wedding = new Date('2027-04-10');
+        const now = new Date();
+        const days = Math.ceil((wedding - now) / (1000 * 60 * 60 * 24));
+        showToast(`${days} days to go! 🥂`);
+      }
+    });
   });
 
   // Landscape orientation toast
@@ -1692,21 +1736,12 @@
     e.preventDefault();
     const name = document.getElementById('name').value;
     if (!name.trim()) return;
-    const sendMode = e.submitter?.dataset?.sendMode || 'love';
-    let modeLine = 'Classic. Romantic. Dependable.';
-    if (sendMode === 'live') {
-      modeLine = 'Bold choice. Slight typo energy. We respect it.';
-    } else if (sendMode === 'laugh') {
-      modeLine = 'Excellent. Correct vibe. Ten out of ten banter.';
-    }
     const overlay = document.createElement('div');
     overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(58,58,58,0.6);display:flex;justify-content:center;align-items:center;cursor:pointer;backdrop-filter:blur(4px);';
     overlay.innerHTML = `
       <div style="background:var(--cream);max-width:480px;width:90%;padding:3rem 2.5rem;border-radius:3px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
         <p style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--charcoal);font-weight:300;margin-bottom:1rem;">Hold on a moment</p>
-        <p style="font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--sage);margin-bottom:1rem;">
-          ${modeLine}
-        </p>
+        <p style="font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--sage);margin-bottom:1rem;">Thank you</p>
         <p style="font-size:0.9rem;color:var(--text);line-height:1.8;margin-bottom:1.5rem;">
           This website is an engagement gift from Joe &amp; Bansri and is <strong>not</strong> the official wedding RSVP.
           Your response hasn't actually gone anywhere. Please don't panic.
@@ -1720,6 +1755,50 @@
     overlay.addEventListener('click', () => overlay.remove());
     document.body.appendChild(overlay);
   }
+</script>
+
+<script>
+  (function () {
+    /* Change the password here. Bump SESSION_KEY (e.g. v2) if you change it and want everyone to sign in again. */
+    var SITE_ACCESS_PASSWORD = 'Normans2027';
+    var SESSION_KEY = 'naomi-sean-site-v1';
+
+    var gate = document.getElementById('site-gate');
+    var form = document.getElementById('site-gate-form');
+    var input = document.getElementById('site-gate-input');
+    var err = document.getElementById('site-gate-err');
+
+    function unlock() {
+      sessionStorage.setItem(SESSION_KEY, '1');
+      gate.classList.add('hidden');
+      document.body.classList.remove('site-gate-open');
+    }
+
+    function showErr(msg) {
+      err.textContent = msg;
+      err.hidden = false;
+    }
+
+    if (sessionStorage.getItem(SESSION_KEY) === '1') {
+      gate.classList.add('hidden');
+    } else {
+      document.body.classList.add('site-gate-open');
+      input.focus();
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      err.hidden = true;
+      var val = (input.value || '').trim();
+      if (val === SITE_ACCESS_PASSWORD) {
+        unlock();
+        input.value = '';
+      } else {
+        showErr('That does not match. Check your invitation or ask the couple.');
+        input.select();
+      }
+    });
+  })();
 </script>
 
 </body>
