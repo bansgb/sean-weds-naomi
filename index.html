@@ -719,70 +719,87 @@
       letter-spacing: 2px;
     }
 
-    /* ── Photo Gallery ── */
+    /* ── Photo Gallery: 2-col + highlights under 600px; 4-col mosaic from 600px up ── */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.2rem;
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: minmax(120px, 42vw);
+      gap: 0.45rem;
       max-width: 100%;
       margin: 0 auto;
+      grid-auto-flow: dense;
     }
 
     .gallery-item {
       position: relative;
       overflow: hidden;
-      border-radius: 3px;
-      background: var(--warm-white);
-      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 2px;
+      background: rgba(58, 58, 58, 0.06);
+      border: 1px solid rgba(58, 58, 58, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      min-height: 0;
     }
 
     .gallery-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     }
 
     .gallery-item img {
       width: 100%;
-      height: 300px;
+      height: 100%;
+      min-height: 100px;
       object-fit: cover;
       display: block;
     }
 
-    @media (max-width: 768px) {
+    /* Friends shot: framed so it reads as a deliberate mosaic tile, not a stray cell */
+    .gallery-item--friends {
+      border: 2px solid rgba(156, 175, 136, 0.55);
+      border-radius: 4px;
+      box-shadow:
+        inset 0 0 0 1px rgba(253, 248, 240, 0.25),
+        0 3px 14px rgba(58, 58, 58, 0.08);
+    }
+
+    .gallery-item--friends:hover {
+      box-shadow:
+        inset 0 0 0 1px rgba(253, 248, 240, 0.35),
+        0 8px 26px rgba(58, 58, 58, 0.12);
+    }
+
+    .gallery-item:nth-child(1) {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    .gallery-item:nth-child(7) {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+
+    /* 600px+: single mosaic. Friends tile is half width (2 cols), not full bleed. */
+    @media (min-width: 600px) {
       .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: minmax(115px, min(26vw, 240px));
+        gap: 0.5rem;
       }
-      .gallery-item img {
-        height: 220px;
+
+      .gallery-item:nth-child(1) {
+        grid-column: span 2;
+        grid-row: span 2;
       }
-    }
 
-    .gallery-caption {
-      padding: 1rem 1.2rem;
-      text-align: center;
-    }
+      .gallery-item:nth-child(7) {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
 
-    .gallery-caption p {
-      font-size: 0.82rem;
-      color: var(--text-light);
-      line-height: 1.6;
-      font-style: italic;
-    }
-
-    .gallery-caption .caption-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--charcoal);
-      font-style: normal;
-      margin-bottom: 0.3rem;
-    }
-
-    .gallery-feature {
-      grid-column: 1 / -1;
-      max-width: 500px;
-      margin: 0 auto;
+      .gallery-item--friends {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
     }
 
     /* ── Easter Egg: Toast ── */
@@ -1092,34 +1109,19 @@
   <div class="section-divider fade-in"></div>
 
   <div class="gallery-grid">
-    <div class="gallery-item fade-in">
-      <img src="photos/naomi-disney.png" alt="Naomi celebrating at Disneyland">
-      <div class="gallery-caption">
-        <p class="caption-title">The Bride</p>
-        <p>Naomi at the happiest place on earth. Although the wedding might top it.</p>
-      </div>
-    </div>
-    <div class="gallery-item fade-in">
-      <img src="photos/sean-window.png" alt="Sean peering through a window with a baton">
-      <div class="gallery-caption">
-        <p class="caption-title">The Conductor</p>
-        <p>Sean spotted through a window, baton in hand. The man never stops. Genuinely brilliant at what he does.</p>
-      </div>
-    </div>
-    <div class="gallery-item fade-in">
-      <img src="photos/naomi-sean-race.png" alt="Naomi and Sean after finishing a 10K">
-      <div class="gallery-caption">
-        <p class="caption-title">The Runners</p>
-        <p>After smashing a 10K together. Half marathon next with Naomi's sisters. What a team.</p>
-      </div>
-    </div>
-    <div class="gallery-item fade-in">
-      <img src="photos/naomi-sean-friends.png" alt="Naomi and Sean doing a Friends pose">
-      <div class="gallery-caption">
-        <p class="caption-title">Could They BE Any More Suited?</p>
-        <p>Two people who are absolutely perfect for each other, acting daft on a greyhound statue. As one does.</p>
-      </div>
-    </div>
+    <div class="gallery-item fade-in"><img src="photos/gallery-09.jpeg" alt=""></div>
+    <div class="gallery-item fade-in"><img src="photos/gallery-10.jpeg" alt=""></div>
+    <div class="gallery-item fade-in"><img src="photos/gallery-02.jpeg" alt=""></div>
+    <div class="gallery-item fade-in"><img src="photos/gallery-03.jpeg" alt=""></div>
+    <div class="gallery-item fade-in"><img src="photos/gallery-05.jpeg" alt=""></div>
+    <div class="gallery-item fade-in"><img src="photos/gallery-12.jpeg" alt=""></div>
+    <div class="gallery-item fade-in"><img src="photos/gallery-01.jpg" alt=""></div>
+    <div class="gallery-item fade-in"><img src="photos/gallery-04.jpeg" alt=""></div>
+    <div class="gallery-item fade-in"><img src="photos/gallery-06.jpeg" alt=""></div>
+    <div class="gallery-item fade-in"><img src="photos/gallery-07.jpeg" alt=""></div>
+    <div class="gallery-item fade-in"><img src="photos/gallery-08.jpeg" alt=""></div>
+    <div class="gallery-item fade-in"><img src="photos/gallery-11.jpeg" alt=""></div>
+    <div class="gallery-item fade-in gallery-item--friends"><img src="photos/naomi-sean-friends.png" alt=""></div>
   </div>
 </section>
 
