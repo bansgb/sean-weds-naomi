@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Naomi & Sean — Against All Odds</title>
+  <title>Naomi and Sean</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -106,20 +106,20 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        url('photos/naomi-beer.png'),
-        url('photos/sean-hero.png');
-      background-position: left center, right center;
-      background-size: 50% auto;
+      z-index: 0;
+      background-image: url('photos/hero-whatsapp.jpeg');
+      background-size: cover;
+      background-position: center;
       background-repeat: no-repeat;
+      filter: brightness(1.12) saturate(0.95);
     }
 
     .hero::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(253, 248, 240, 0.55);
-      backdrop-filter: brightness(1.05);
+      z-index: 0;
+      background: rgba(253, 248, 240, 0.78);
     }
 
     .hero-subtitle {
@@ -436,6 +436,17 @@
     .detail-block em {
       color: var(--text-light);
       font-size: 0.82rem;
+    }
+
+    .detail-block a.map-link {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.12em;
+    }
+    .detail-block a.map-link:visited,
+    .detail-block a.map-link:hover,
+    .detail-block a.map-link:active {
+      color: inherit;
     }
 
     /* ── Schedule ── */
@@ -918,17 +929,6 @@
 </head>
 <body>
 
-<!-- ════════════ WELCOME POP-UP ════════════ -->
-<div id="welcome-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;padding:1.5rem;">
-  <div style="background:var(--cream);max-width:520px;width:90%;padding:3rem 2.5rem;border-radius:3px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
-    <p style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--charcoal);font-weight:500;margin-bottom:1rem;">Congratulations!</p>
-    <p style="font-size:0.9rem;color:var(--text);line-height:1.8;margin-bottom:1.5rem;">
-      This is your engagement gift from Joe &amp; Bansri! Happy engagement! All the content is made up for now - if you'd like to use it, just let us know what to change and we'll handle it.
-    </p>
-    <button onclick="document.getElementById('welcome-overlay').style.display='none'" style="font-family:'Montserrat',sans-serif;font-size:0.8rem;letter-spacing:3px;text-transform:uppercase;padding:0.9rem 2.5rem;background:var(--sage);color:#fff;border:none;cursor:pointer;border-radius:2px;font-weight:500;">Let's See It</button>
-  </div>
-</div>
-
 <!-- ════════════ NAVIGATION ════════════ -->
 <nav id="mainNav">
   <ul>
@@ -949,7 +949,7 @@
     <span class="ampersand">&amp;</span>
     <span id="sean-name" style="cursor:pointer">Sean</span>
   </h1>
-  <p class="hero-date">The Tenth of April, Two Thousand and Twenty-Seven</p>
+  <p class="hero-date">Saturday 10th April, 2027</p>
   <p class="hero-tagline">Get ready to party!</p>
   <div class="scroll-indicator">
     <div class="scroll-line"></div>
@@ -964,13 +964,23 @@
   <div class="section-divider fade-in"></div>
 
   <p class="body-text fade-in">
-    <span class="highlight">Naomi Priest</span> is a project manager - a woman who runs marathons, keeps complex systems on track, and radiates calm competence in all things.
-    <span class="highlight">Sean Gleeson</span> is a brilliant musician and teacher with a huge heart, an infectious laugh, and a gift for making every room he walks into more fun.
-    They met perfoming Sweeney Todd with Leeds Gilbert and Sullivan Society - Naomi on stage, Sean playing the trumpet - and the rest is history.
+    Naomi and Sean met performing <span class="highlight">Sweeney Todd</span> with <span class="highlight">Leeds Gilbert and Sullivan Society</span>, with Naomi on stage and Sean playing the trumpet. After striking up a rapport at the after-show party, Naomi and Sean bumped into each other again at a <span class="highlight">Stephen Sondheim</span> concert, and Sean plucked up the courage to strike up a conversation.
+  </p>
+
+  <figure class="fade-in" style="max-width: min(420px, 100%); margin: 2rem auto 2.5rem; text-align: center;">
+    <img src="photos/screenshot2.png" alt="Screenshot of the text when Sean asked Naomi out" width="420" style="width: 100%; max-width: 420px; height: auto; border-radius: 4px; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
+  </figure>
+
+  <p class="body-text fade-in">
+    They had a successful first date at <span class="highlight">The Woods</span> in Chapel Allerton and the rest is history!
   </p>
 
   <p class="body-text fade-in">
-    After a day of wine tasting in Portugal's <span class="highlight">Douro Valley</span>, Sean proposed at the top of a gorgeous vista on the 26th of July 2025. Naomi said yes before he'd even finished the question. At least that's how he tells it.
+    In their four-and-a-half-year relationship, they have travelled to Ireland, Italy, Wales, South East Asia, France, Portugal, the USA, Germany and Greece. They have performed in Sweeney Todd, Hunchback of Notre Dame, Chitty Chitty Bang Bang and Chess together. They have run a 10k and a half marathon together. And they have bought a beautiful home together, down the road from their first date.
+  </p>
+
+  <p class="body-text fade-in">
+    After a day of wine tasting in Portugal's <span class="highlight">Douro Valley</span>, Sean proposed at the top of a gorgeous vista on the 26th July 2025. Naomi said yes before he'd even finished the question. At least that's how he tells it.
   </p>
 </section>
 
@@ -991,7 +1001,7 @@
     <div class="detail-block fade-in">
       <div class="detail-icon">🏡</div>
       <p class="detail-label">Where</p>
-      <h3>The Normans</h3>
+      <h3><a class="map-link" href="https://www.google.co.uk/maps/place/The+Normans/@53.9206306,-1.204163,17z/data=!3m1!4b1!4m6!3m5!1s0x4879379a3c97f187:0x98ac68200f25bb2e!8m2!3d53.9206275!4d-1.2015881!16s%2Fg%2F11cjkp5fbp?entry=ttu&amp;g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">The Normans</a></h3>
       <p>Normans Farm, Bilbrough<br>York, YO23 3PQ</p>
     </div>
   </div>
@@ -1002,59 +1012,9 @@
   <button type="button" class="site-egg" style="top: 7%; right: 11%;" aria-label="Hidden egg">🥚</button>
   <p class="section-label fade-in">On the Day</p>
   <h2 class="section-title fade-in">Order of Events</h2>
-  <p class="body-text fade-in" style="margin-top: -0.5rem; font-style: italic; color: var(--text-light); font-size: 0.88rem;">Coming soon!</p>
   <div class="section-divider fade-in"></div>
-  <ul class="schedule-list">
-    <li class="schedule-item fade-in">
-      <span class="schedule-time">2:00 PM</span>
-      <div class="schedule-event">
-        <h4>Ceremony</h4>
-        <p>Two people, some vows, and at least one person crying. Probably Tony.</p>
-      </div>
-    </li>
-    <li class="schedule-item fade-in">
-      <span class="schedule-time">3:00 PM</span>
-      <div class="schedule-event">
-        <h4>Drinks Reception</h4>
-        <p>Champagne, canapes, and group photos in the beautiful grounds at The Normans.</p>
-      </div>
-    </li>
-    <li class="schedule-item fade-in">
-      <span class="schedule-time">5:00 PM</span>
-      <div class="schedule-event">
-        <h4 id="wedding-breakfast" style="cursor:pointer">Wedding Breakfast</h4>
-        <p>Three courses of something rather special. Details to follow.</p>
-      </div>
-    </li>
-    <li class="schedule-item fade-in">
-      <span class="schedule-time">6:30 PM</span>
-      <div class="schedule-event">
-        <h4>Speeches</h4>
-        <p>Sean will cry. Joe (the doctor, in case you forgot) will be savage. Tony and Mark will be dignified. Naomi will be epic. Get ready</p>
-      </div>
-    </li>
-    <li class="schedule-item fade-in">
-      <span class="schedule-time">8:00 PM</span>
-      <div class="schedule-event">
-        <h4>First Dance</h4>
-        <p>These two are going to absolutely nail it.</p>
-      </div>
-    </li>
-    <li class="schedule-item fade-in">
-      <span class="schedule-time">8:30 PM</span>
-      <div class="schedule-event">
-        <h4>Evening Reception</h4>
-        <p>Sean's mates take the stage. The band is made up of his musician friends and the dance floor is going to be epic.</p>
-      </div>
-    </li>
-    <li class="schedule-item fade-in">
-      <span class="schedule-time">Midnight</span>
-      <div class="schedule-event">
-        <h4>Carriages</h4>
-        <p>Home time. Please take all personal belongings and any remaining dignity.</p>
-      </div>
-    </li>
-  </ul>
+
+  <p class="body-text fade-in" style="margin-top: -0.5rem; font-style: italic; color: var(--text-light); font-size: 0.88rem;">Coming soon!</p>
 </section>
 
 <!-- ════════════ PHOTO GALLERY ════════════ -->
@@ -1204,9 +1164,9 @@
       <label for="message">A Message for the Couple</label>
       <textarea id="message" placeholder="Words of wisdom, a favourite memory, or anything you'd like to share..."></textarea>
     </div>
-    <button type="submit" class="btn-rsvp" data-send-mode="love">Send With Love</button>
     <button type="submit" class="btn-rsvp" data-send-mode="live">Send With Live</button>
     <button type="submit" class="btn-rsvp" data-send-mode="laugh">Send With Laugh</button>
+    <button type="submit" class="btn-rsvp" data-send-mode="love">Send With Love</button>
   </form>
 </div>
 
@@ -1242,7 +1202,7 @@
   ║    Click "Sean" in the hero 3 times → Sad trombone   ║
   ║    Shake your phone → Confetti!                      ║
   ║    Click any tiny 🥚 on the page → Bunny apocalypse  ║
-  ║    Click "Wedding Breakfast" → Fruit rain 🍇🍏🫐    ║
+  ║    (Wedding Breakfast trigger hidden while schedule is TBC) ║
   ║    Tap the date 5 times → Countdown to the wedding   ║
   ║    Rotate phone to landscape → A little message      ║
   ║    Submit the RSVP form → A friendly disclaimer      ║
@@ -1565,7 +1525,8 @@
     draw();
   }
 
-  document.getElementById('wedding-breakfast').addEventListener('click', fruitRain);
+  const weddingBreakfastEl = document.getElementById('wedding-breakfast');
+  if (weddingBreakfastEl) weddingBreakfastEl.addEventListener('click', fruitRain);
 
   // ── Easter Egg: Click tiny eggs for bunny apocalypse ──
   let bunnyRampage = false;
