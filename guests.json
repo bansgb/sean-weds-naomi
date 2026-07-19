@@ -408,15 +408,15 @@
   {
     "id": "daniel-oliver",
     "name": "Daniel Oliver",
-    "partyId": "daniel-oliver-and-alice",
-    "partyLabel": "Daniel Oliver and Alice",
+    "partyId": "daniel-oliver-and-alice-oliver-knight",
+    "partyLabel": "Daniel Oliver and Alice Oliver-Knight",
     "guestType": "day"
   },
   {
-    "id": "alice",
-    "name": "Alice",
-    "partyId": "daniel-oliver-and-alice",
-    "partyLabel": "Daniel Oliver and Alice",
+    "id": "alice-oliver-knight",
+    "name": "Alice Oliver-Knight",
+    "partyId": "daniel-oliver-and-alice-oliver-knight",
+    "partyLabel": "Daniel Oliver and Alice Oliver-Knight",
     "guestType": "day"
   },
   {
@@ -560,10 +560,10 @@
     "guestType": "day"
   },
   {
-    "id": "emily-ann",
-    "name": "Emily Ann",
-    "partyId": "emily-ann",
-    "partyLabel": "Emily Ann",
+    "id": "emily-tippins",
+    "name": "Emily Tippins",
+    "partyId": "emily-tippins",
+    "partyLabel": "Emily Tippins",
     "guestType": "day"
   },
   {
