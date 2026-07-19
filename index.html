@@ -1809,6 +1809,9 @@
   // RSVP guest search
   var RSVP_GUESTS = [];
   var selectedGuest = null;
+  var RSVP_SHEET_URL = 'https://script.google.com/macros/s/AKfycby2WAXWzol280Q-f6-zzuc0xm5JqWCCp1j7QKbFw1HmCa01kvoOaaiupf845v4Upg-W2Q/exec';
+  var alreadyRsvpedNames = {};
+  var alreadyRsvpedParties = {};
 
   function normName(s) {
     return (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
@@ -1832,7 +1835,52 @@
     document.getElementById("party-id").value = "";
     document.getElementById("guest-party-note").hidden = true;
     document.getElementById("party-fields").innerHTML = "";
+    document.getElementById("rsvp-status").textContent = "";
     setDetailsLocked(true);
+  }
+
+  function partyAlreadyRsvped(guest) {
+    if (!guest) return false;
+    if (alreadyRsvpedNames[guest.name]) return true;
+    if (alreadyRsvpedParties[guest.partyLabel]) return true;
+    var members = partyMembers(guest.partyId);
+    for (var i = 0; i < members.length; i++) {
+      if (alreadyRsvpedNames[members[i].name]) return true;
+    }
+    return false;
+  }
+
+  function markPartyRsvped(guest) {
+    if (!guest) return;
+    alreadyRsvpedParties[guest.partyLabel] = true;
+    partyMembers(guest.partyId).forEach(function (m) {
+      alreadyRsvpedNames[m.name] = true;
+    });
+  }
+
+  function showAlreadyRsvped() {
+    var note = document.getElementById("guest-party-note");
+    note.textContent = "You have already RSVPed. If you need to change your response, please contact Naomi or Sean.";
+    note.hidden = false;
+    document.getElementById("party-fields").innerHTML = "";
+    setDetailsLocked(true);
+    document.getElementById("rsvp-status").textContent = "You have already RSVPed.";
+  }
+
+  function loadAlreadyRsvped() {
+    return fetch(RSVP_SHEET_URL)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        alreadyRsvpedNames = {};
+        alreadyRsvpedParties = {};
+        (data.guestNames || []).forEach(function (name) {
+          if (name) alreadyRsvpedNames[String(name)] = true;
+        });
+        (data.partyLabels || []).forEach(function (label) {
+          if (label) alreadyRsvpedParties[String(label)] = true;
+        });
+      })
+      .catch(function () {});
   }
 
   function renderPartyFields(guest) {
@@ -1870,6 +1918,11 @@
     document.getElementById("guest-id").value = guest.id;
     document.getElementById("party-id").value = guest.partyId;
     document.getElementById("guest-suggestions").hidden = true;
+    document.getElementById("rsvp-status").textContent = "";
+    if (partyAlreadyRsvped(guest)) {
+      showAlreadyRsvped();
+      return;
+    }
     renderPartyFields(guest);
     setDetailsLocked(false);
   }
@@ -1901,13 +1954,12 @@
     document.body.appendChild(overlay);
   }
 
-  var RSVP_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyDQ0grPq7ZD9okV9seZoiH4v6ZClmCoNbaJLglOIuNrnavydQi1po5iw7bLggNURxoRA/exec';
-
   function handleRSVP(e) {
     e.preventDefault();
     var status = document.getElementById("rsvp-status");
     var submitBtn = document.getElementById("rsvp-submit");
     if (!selectedGuest) { status.textContent = "Please find and select your name first."; return; }
+    if (partyAlreadyRsvped(selectedGuest)) { showAlreadyRsvped(); return; }
     var members = partyMembers(selectedGuest.partyId);
     var responses = [];
     for (var i = 0; i < members.length; i++) {
@@ -1930,6 +1982,7 @@
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload)
     }).then(function () {
+      markPartyRsvped(selectedGuest);
       status.textContent = "";
       showRsvpOverlay("Thank you", "<p style=\"font-size:0.9rem;color:var(--text);line-height:1.8;margin-bottom:1.5rem;\">Your RSVP has been received. We cannot wait to celebrate with you.</p>");
       document.getElementById("rsvp-form").reset();
@@ -1951,6 +2004,7 @@
       RSVP_GUESTS = [];
       document.getElementById("rsvp-status").textContent = "Could not load the guest list.";
     });
+    loadAlreadyRsvped();
     nameInput.addEventListener("input", function () {
       if (selectedGuest && nameInput.value != selectedGuest.name) clearGuestSelection();
       showSuggestions(nameInput.value);
