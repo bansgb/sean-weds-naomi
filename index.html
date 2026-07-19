@@ -379,10 +379,6 @@
 
     .body-text + .body-text { margin-top: 1.5rem; }
 
-    .highlight {
-      color: var(--sage-dark);
-      font-weight: 500;
-    }
 
     .quote-block {
       font-family: 'Cormorant Garamond', serif;
@@ -615,6 +611,11 @@
       line-height: 1.8;
     }
 
+    .faq-answer a {
+      color: var(--sage-dark);
+      text-decoration: underline;
+    }
+
     /* ── RSVP ── */
     .rsvp-section {
       background: linear-gradient(165deg, var(--sage) 0%, var(--sage-dark) 100%);
@@ -828,20 +829,11 @@
       display: block;
     }
 
-    /* Friends shot: framed so it reads as a deliberate mosaic tile, not a stray cell */
-    .gallery-item--friends {
-      border: 2px solid rgba(156, 175, 136, 0.55);
-      border-radius: 4px;
-      box-shadow:
-        inset 0 0 0 1px rgba(253, 248, 240, 0.25),
-        0 3px 14px rgba(58, 58, 58, 0.08);
+    .gallery-item img[src*="naomi-sean-friends"],
+    .gallery-item img[src*="naomi-sean-race"] {
+      object-position: top center;
     }
 
-    .gallery-item--friends:hover {
-      box-shadow:
-        inset 0 0 0 1px rgba(253, 248, 240, 0.35),
-        0 8px 26px rgba(58, 58, 58, 0.12);
-    }
 
     .gallery-item:nth-child(1) {
       grid-column: span 2;
@@ -871,10 +863,6 @@
         grid-row: span 2;
       }
 
-      .gallery-item--friends {
-        grid-column: span 2;
-        grid-row: span 1;
-      }
     }
 
     /* ── Easter Egg: Toast ── */
@@ -1111,10 +1099,8 @@
 <!-- ════════════ NAVIGATION ════════════ -->
 <nav id="mainNav">
   <ul>
-    <li><a href="#story" class="nav-hide-mobile">Our Story</a></li>
-    <li><a href="#party" class="nav-hide-mobile">Wedding Party</a></li>
-    <li><a class="nav-monogram" href="#top" aria-label="Naomi and Sean, back to top"><img src="monogram.svg" alt="" width="96" height="32" decoding="async"></a></li>
-    <li><a href="#faq" class="nav-hide-mobile">FAQs</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#faq">FAQs</a></li>
     <li><a href="#rsvp">RSVP</a></li>
   </ul>
 </nav>
@@ -1132,10 +1118,7 @@
     <a class="map-link" href="https://www.google.co.uk/maps/place/The+Normans/@53.9206306,-1.204163,17z/data=!3m1!4b1!4m6!3m5!1s0x4879379a3c97f187:0x98ac68200f25bb2e!8m2!3d53.9206275!4d-1.2015881!16s%2Fg%2F11cjkp5fbp?entry=ttu&amp;g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">The Normans, YO23 3PQ</a>
   </p>
   <p class="hero-date">Saturday 10th April, 2027</p>
-  <p class="hero-tagline">Get ready to party!</p>
-  <div class="scroll-indicator">
-    <div class="scroll-line"></div>
-  </div>
+  <p class="hero-date">Arrive at 11.30am for a 12pm start</p>
 </section>
 
 <!-- ════════════ OUR STORY ════════════ -->
@@ -1146,7 +1129,7 @@
   <div class="section-divider fade-in"></div>
 
   <p class="body-text fade-in">
-    Naomi and Sean met performing <span class="highlight">Sweeney Todd</span> with <span class="highlight">Leeds Gilbert and Sullivan Society</span>, with Naomi on stage and Sean playing the trumpet. After striking up a rapport at the after-show party, Naomi and Sean bumped into each other again at a <span class="highlight">Stephen Sondheim</span> concert, and Sean plucked up the courage to strike up a conversation.
+    Naomi and Sean met performing Sweeney Todd with Leeds Gilbert and Sullivan Society, with Naomi on stage and Sean playing the trumpet. After striking up a rapport at the after-show party, Naomi and Sean bumped into each other again at a Stephen Sondheim concert, and Sean plucked up the courage to strike up a conversation.
   </p>
 
   <figure class="fade-in" style="max-width: min(420px, 100%); margin: 2rem auto 2.5rem; text-align: center;">
@@ -1154,15 +1137,15 @@
   </figure>
 
   <p class="body-text fade-in">
-    They had a successful first date at <span class="highlight">The Woods</span> in Chapel Allerton and the rest is history!
+    They had a successful first date at The Woods in Chapel Allerton and the rest is history!
   </p>
 
   <p class="body-text fade-in">
-    In their four-and-a-half-year relationship, they have travelled to Ireland, Italy, Wales, South East Asia, France, Portugal, the USA, Germany and Greece. They have performed in Sweeney Todd, Hunchback of Notre Dame, Chitty Chitty Bang Bang and Chess together. They have run a 10k and a half marathon together. And they have bought a beautiful home together, down the road from their first date.
+    In their four-and-a-half-year relationship, they have travelled to Ireland, Italy, Wales, South East Asia, France, Portugal, the USA, Germany and Greece. They have performed in Sweeney Todd, Hunchback of Notre Dame, Chitty Chitty Bang Bang and Chess together. When they're not performing or travelling together, Naomi and Sean support each other's hobbies, with Naomi attending all of Sean's performances and Sean attending all of Naomi's running events. And they have bought a beautiful home together, down the road from their first date.
   </p>
 
   <p class="body-text fade-in">
-    After a day of wine tasting in Portugal's <span class="highlight">Douro Valley</span>, Sean proposed at the top of a gorgeous vista on the 26th July 2025. Naomi said yes before he'd even finished the question. At least that's how he tells it.
+    After a day of wine tasting in Portugal's Douro Valley, Sean proposed at the top of a gorgeous vista on the 26th July 2025. Naomi said yes before he'd even finished the question. At least that's how he tells it.
   </p>
 </section>
 
@@ -1196,29 +1179,9 @@
     <div class="gallery-item fade-in"><img src="photos/gallery-07.jpeg" alt=""></div>
     <div class="gallery-item fade-in"><img src="photos/gallery-08.jpeg" alt=""></div>
     <div class="gallery-item fade-in"><img src="photos/gallery-11.jpeg" alt=""></div>
-    <div class="gallery-item fade-in gallery-item--friends"><img src="photos/naomi-sean-friends.png" alt=""></div>
+    <div class="gallery-item fade-in"><img src="photos/naomi-sean-friends.png" alt=""></div>
+    <div class="gallery-item fade-in"><img src="photos/naomi-sean-race.png" alt=""></div>
   </div>
-</section>
-
-<!-- ════════════ WEDDING PARTY ════════════ -->
-<section id="party">
-  <button type="button" class="site-egg" style="top: 12%; left: 7%;" aria-label="Hidden egg">🥚</button>
-  <p class="section-label fade-in">The Brave Volunteers</p>
-  <h2 class="section-title fade-in">Wedding Party</h2>
-  <div class="section-divider fade-in"></div>
-
-  <div class="party-grid" style="max-width: 500px;">
-    <div class="party-card fade-in">
-      <div class="card-icon">🤵</div>
-      <h3>Joe Gleeson-Buddhdev</h3>
-      <p class="card-role">Best Man</p>
-      <p>Sean's older brother. Also a doctor, which he will find a way to mention. Has been preparing the best man's speech since roughly 1997 and is alarmingly excited about it. Sean should be worried.</p>
-    </div>
-  </div>
-
-  <p class="body-text fade-in" style="margin-top: 2.5rem; font-style: italic; color: var(--text-light);">
-    There are more wonderful people in the wedding party, but Joe wasn't around when "his" engagement gift was being put together. So he's the only one who got a write-up. Perks of being the best man.
-  </p>
 </section>
 
 <!-- ════════════ FAQ ════════════ -->
@@ -1230,9 +1193,21 @@
 
   <div class="faq-list">
     <div class="faq-item fade-in">
+      <div class="faq-question">Where can we stay?</div>
+      <div class="faq-answer">
+        <p>There are also a number of nearby hotels, pubs and B&amp;Bs - take a look <a href="https://thenormansweddings.co.uk/accommodation" target="_blank" rel="noopener noreferrer">here</a>.</p>
+      </div>
+    </div>
+    <div class="faq-item fade-in">
+      <div class="faq-question">Will I need to pre-book taxis at the end of the night?</div>
+      <div class="faq-answer">
+        <p>Yes, please do pre-book - you can find details for local taxi services <a href="https://thenormansweddings.co.uk/taxis-2" target="_blank" rel="noopener noreferrer">here</a>.</p>
+      </div>
+    </div>
+    <div class="faq-item fade-in">
       <div class="faq-question">What should I wear?</div>
       <div class="faq-answer">
-        <p>Clothes!</p>
+        <p>The dress code is daytime formal attire - suits and dresses!</p>
       </div>
     </div>
     <div class="faq-item fade-in">
@@ -1244,7 +1219,7 @@
     <div class="faq-item fade-in">
       <div class="faq-question">Is there a gift registry?</div>
       <div class="faq-answer">
-        <p>We are not expecting presents, but if you would like to give something, we would love a contribution towards our honeymoon. Bank details to follow.</p>
+        <p>Your presence is the best gift, but if you would like to give something, we would love a contribution towards our honeymoon. Details to follow.</p>
       </div>
     </div>
   </div>
@@ -1903,10 +1878,13 @@
       block += "<option value=\"yes\">Joyfully accepts! Wouldn\x27t miss it</option>";
       block += "<option value=\"no\">Regretfully declines. Will think of you fondly</option>";
       block += "</select></div>";
-      block += "<div " + "cl" + "ass" + "=\"form-group\" style=\"margin-bottom:0\">";
-      block += "<label for=\"dietary-" + m.id + "\">Dietary requirements</label>";
-      block += "<input type=\"text\" id=\"dietary-" + m.id + "\" name=\"dietary-" + m.id + "\" placeholder=\"Vegan, vegetarian, allergies, etc.\">";
-      block += "</div></div>";
+      if ((m.guestType || "day") != "evening") {
+        block += "<div " + "cl" + "ass" + "=\"form-group\" style=\"margin-bottom:0\">";
+        block += "<label for=\"dietary-" + m.id + "\">Dietary requirements</label>";
+        block += "<input type=\"text\" id=\"dietary-" + m.id + "\" name=\"dietary-" + m.id + "\" placeholder=\"Vegan, vegetarian, allergies, etc.\">";
+        block += "</div>";
+      }
+      block += "</div>";
       return block;
     }).join("");
     document.getElementById("party-fields").innerHTML = html;
@@ -1966,7 +1944,7 @@
       var m = members[i];
       var attendance = document.getElementById("attendance-" + m.id);
       if (!attendance || !attendance.value) { status.textContent = "Please choose attendance for everyone in your party."; return; }
-      responses.push({ guestId: m.id, name: m.name, partyId: m.partyId, partyLabel: m.partyLabel, attendance: attendance.value, dietary: (document.getElementById("dietary-" + m.id).value || "").trim() });
+      responses.push({ guestId: m.id, name: m.name, partyId: m.partyId, partyLabel: m.partyLabel, guestType: m.guestType || "day", attendance: attendance.value, dietary: (function () { var el = document.getElementById("dietary-" + m.id); return el ? (el.value || "").trim() : ""; })() });
     }
     var payload = {
       submittedBy: selectedGuest.name,
