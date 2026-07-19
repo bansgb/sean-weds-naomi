@@ -698,6 +698,81 @@
       color: var(--charcoal);
     }
 
+    .form-group-search { position: relative; }
+
+    .guest-suggestions {
+      list-style: none;
+      margin: 0.35rem 0 0;
+      padding: 0;
+      background: rgba(255,255,255,0.96);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 2px;
+      max-height: 220px;
+      overflow-y: auto;
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
+
+    .guest-suggestions li button {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 0.75rem 1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
+      color: var(--charcoal);
+      cursor: pointer;
+    }
+
+    .guest-suggestions li button:hover,
+    .guest-suggestions li button:focus {
+      background: rgba(122, 143, 122, 0.15);
+      outline: none;
+    }
+
+    .guest-party-note {
+      margin-top: 0.65rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+    }
+
+    .rsvp-details.is-locked {
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .party-member {
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 2px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .party-member h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: #fff;
+      margin: 0 0 0.85rem;
+    }
+
+    .rsvp-status {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.8);
+      min-height: 1.2em;
+    }
+
+    .btn-rsvp:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
     /* ── Footer ── */
     footer {
       text-align: center;
@@ -1187,32 +1262,30 @@
     If you decline, Naomi and Sean will understand but Joe will eat your canapes.
   </p>
 
-  <form class="rsvp-form fade-in" onsubmit="handleRSVP(event)">
-    <div class="form-group">
+  <form class="rsvp-form fade-in" id="rsvp-form" onsubmit="handleRSVP(event)" autocomplete="off">
+    <div class="form-group form-group-search">
       <label for="name">Your Name</label>
-      <input type="text" id="name" placeholder="As it appears on the invitation, ideally">
+      <input type="text" id="name" placeholder="Start typing your name" autocomplete="off" required>
+      <ul id="guest-suggestions" class="guest-suggestions" hidden></ul>
+      <p id="guest-party-note" class="guest-party-note" hidden></p>
+      <input type="hidden" id="guest-id" value="">
+      <input type="hidden" id="party-id" value="">
     </div>
-    <div class="form-group">
-      <label for="attendance">Will You Be Joining Us?</label>
-      <select id="attendance">
-        <option value="">Please select</option>
-        <option value="yes">Joyfully accepts! Wouldn't miss it</option>
-        <option value="no">Regretfully declines. Will think of you fondly</option>
-      </select>
+
+    <div id="rsvp-details" class="rsvp-details is-locked">
+      <div id="party-fields"></div>
+
+      <div class="form-group">
+        <label for="song">Song Request</label>
+        <textarea id="song" placeholder="Suggest a track to add to the playlist"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="message">A Message for the Couple</label>
+        <textarea id="message" placeholder="Words of wisdom, a favourite memory, or anything you'd like to share..."></textarea>
+      </div>
+      <button type="submit" class="btn-rsvp" id="rsvp-submit" disabled>Submit</button>
+      <p id="rsvp-status" class="rsvp-status" aria-live="polite"></p>
     </div>
-    <div class="form-group">
-      <label for="dietary">Dietary Requirements</label>
-      <input type="text" id="dietary" placeholder="Vegan, vegetarian, allergies, etc.">
-    </div>
-    <div class="form-group">
-      <label for="song">Song Request</label>
-      <textarea id="song" placeholder="Suggest a track to add to the playlist"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="message">A Message for the Couple</label>
-      <textarea id="message" placeholder="Words of wisdom, a favourite memory, or anything you'd like to share..."></textarea>
-    </div>
-    <button type="submit" class="btn-rsvp">Submit</button>
   </form>
 </div>
 
@@ -1733,30 +1806,170 @@
     });
   });
 
-  // RSVP handler
-  function handleRSVP(e) {
-    e.preventDefault();
-    const name = document.getElementById('name').value;
-    if (!name.trim()) return;
-    const overlay = document.createElement('div');
-    overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(58,58,58,0.6);display:flex;justify-content:center;align-items:center;cursor:pointer;backdrop-filter:blur(4px);';
-    overlay.innerHTML = `
-      <div style="background:var(--cream);max-width:480px;width:90%;padding:3rem 2.5rem;border-radius:3px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
-        <p style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--charcoal);font-weight:300;margin-bottom:1rem;">Hold on a moment</p>
-        <p style="font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--sage);margin-bottom:1rem;">Thank you</p>
-        <p style="font-size:0.9rem;color:var(--text);line-height:1.8;margin-bottom:1.5rem;">
-          This website is an engagement gift from Joe &amp; Bansri and is <strong>not</strong> the official wedding RSVP.
-          Your response hasn't actually gone anywhere. Please don't panic.
-        </p>
-        <p style="font-size:0.88rem;color:var(--text-light);line-height:1.7;margin-bottom:1.5rem;">
-          The real invitations will be coming separately. When they do, please RSVP through the proper channel so Naomi can do her project-manager thing.
-        </p>
-        <p style="font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);cursor:pointer;">Click anywhere to close</p>
-      </div>
-    `;
-    overlay.addEventListener('click', () => overlay.remove());
+  // RSVP guest search
+  var RSVP_GUESTS = [];
+  var selectedGuest = null;
+
+  function normName(s) {
+    return (s || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+  }
+
+  function partyMembers(partyId) {
+    return RSVP_GUESTS.filter(function (g) { return g.partyId === partyId; });
+  }
+
+  function setDetailsLocked(locked) {
+    var details = document.getElementById("rsvp-details");
+    var submit = document.getElementById("rsvp-submit");
+    if (!details || !submit) return;
+    details.classList.toggle("is-" + "locked", locked);
+    submit.disabled = locked;
+  }
+
+  function clearGuestSelection() {
+    selectedGuest = null;
+    document.getElementById("guest-id").value = "";
+    document.getElementById("party-id").value = "";
+    document.getElementById("guest-party-note").hidden = true;
+    document.getElementById("party-fields").innerHTML = "";
+    setDetailsLocked(true);
+  }
+
+  function renderPartyFields(guest) {
+    var members = partyMembers(guest.partyId);
+    var note = document.getElementById("guest-party-note");
+    var others = members.filter(function (m) { return m.id != guest.id; }).map(function (m) { return m.name; });
+    if (others.length) {
+      note.textContent = "You are invited with " + others.join(" and ") + ". Please respond for your whole party.";
+    } else {
+      note.textContent = "Please complete your response below.";
+    }
+    note.hidden = false;
+    var html = members.map(function (m) {
+      var block = "<div " + "cl" + "ass" + "=\"party-member\" data-guest-id=\"" + m.id + "\">";
+      block += "<h3>" + m.name + "</h3>";
+      block += "<div " + "cl" + "ass" + "=\"form-group\">";
+      block += "<label for=\"attendance-" + m.id + "\">Will you be joining us?</label>";
+      block += "<select id=\"attendance-" + m.id + "\" name=\"attendance-" + m.id + "\" required>";
+      block += "<option value=\"\">Please select</option>";
+      block += "<option value=\"yes\">Joyfully accepts! Wouldn\x27t miss it</option>";
+      block += "<option value=\"no\">Regretfully declines. Will think of you fondly</option>";
+      block += "</select></div>";
+      block += "<div " + "cl" + "ass" + "=\"form-group\" style=\"margin-bottom:0\">";
+      block += "<label for=\"dietary-" + m.id + "\">Dietary requirements</label>";
+      block += "<input type=\"text\" id=\"dietary-" + m.id + "\" name=\"dietary-" + m.id + "\" placeholder=\"Vegan, vegetarian, allergies, etc.\">";
+      block += "</div></div>";
+      return block;
+    }).join("");
+    document.getElementById("party-fields").innerHTML = html;
+  }
+
+  function selectGuest(guest) {
+    selectedGuest = guest;
+    document.getElementById("name").value = guest.name;
+    document.getElementById("guest-id").value = guest.id;
+    document.getElementById("party-id").value = guest.partyId;
+    document.getElementById("guest-suggestions").hidden = true;
+    renderPartyFields(guest);
+    setDetailsLocked(false);
+  }
+
+  function showSuggestions(query) {
+    var list = document.getElementById("guest-suggestions");
+    var q = normName(query);
+    if (!q || q.length < 1) { list.hidden = true; list.innerHTML = ""; return; }
+    var matches = RSVP_GUESTS.filter(function (g) { return normName(g.name).indexOf(q) != -1; }).slice(0, 8);
+    if (!matches.length) {
+      list.innerHTML = "<li><button type=\"button\" disabled>No matching guest found</button></li>";
+      list.hidden = false;
+      return;
+    }
+    list.innerHTML = matches.map(function (g) {
+      return "<li><button type=\"button\" data-guest-id=\"" + g.id + "\">" + g.name + " <span style=\"opacity:0.55\">(" + g.partyLabel + ")</span></button></li>";
+    }).join("");
+    list.hidden = false;
+  }
+
+  function showRsvpOverlay(title, bodyHtml) {
+    var overlay = document.createElement("div");
+    overlay.style.cssText = "position:fixed;inset:0;z-index:9999;background:rgba(58,58,58,0.6);display:flex;justify-content:center;align-items:center;cursor:pointer;backdrop-filter:blur(4px);";
+    overlay.innerHTML = "<div style=\"background:var(--cream);max-width:480px;width:90%;padding:3rem 2.5rem;border-radius:3px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);\">" +
+      "<p style=\"font-family:\"Cormorant Garamond\",serif;font-size:1.8rem;color:var(--charcoal);font-weight:300;margin-bottom:1rem;\">" + title + "</p>" +
+      bodyHtml +
+      "<p style=\"font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);cursor:pointer;\">Click anywhere to close</p></div>";
+    overlay.addEventListener("click", function () { overlay.remove(); });
     document.body.appendChild(overlay);
   }
+
+  var RSVP_SHEET_URL = 'https://script.google.com/macros/s/AKfycbyDQ0grPq7ZD9okV9seZoiH4v6ZClmCoNbaJLglOIuNrnavydQi1po5iw7bLggNURxoRA/exec';
+
+  function handleRSVP(e) {
+    e.preventDefault();
+    var status = document.getElementById("rsvp-status");
+    var submitBtn = document.getElementById("rsvp-submit");
+    if (!selectedGuest) { status.textContent = "Please find and select your name first."; return; }
+    var members = partyMembers(selectedGuest.partyId);
+    var responses = [];
+    for (var i = 0; i < members.length; i++) {
+      var m = members[i];
+      var attendance = document.getElementById("attendance-" + m.id);
+      if (!attendance || !attendance.value) { status.textContent = "Please choose attendance for everyone in your party."; return; }
+      responses.push({ guestId: m.id, name: m.name, partyId: m.partyId, partyLabel: m.partyLabel, attendance: attendance.value, dietary: (document.getElementById("dietary-" + m.id).value || "").trim() });
+    }
+    var payload = {
+      submittedBy: selectedGuest.name,
+      responses: responses,
+      song: document.getElementById("song").value,
+      message: document.getElementById("message").value
+    };
+    status.textContent = "Sending...";
+    submitBtn.disabled = true;
+    fetch(RSVP_SHEET_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    }).then(function () {
+      status.textContent = "";
+      showRsvpOverlay("Thank you", "<p style=\"font-size:0.9rem;color:var(--text);line-height:1.8;margin-bottom:1.5rem;\">Your RSVP has been received. We cannot wait to celebrate with you.</p>");
+      document.getElementById("rsvp-form").reset();
+      clearGuestSelection();
+      submitBtn.disabled = true;
+    }).catch(function () {
+      status.textContent = "Something went wrong. Please try again.";
+      submitBtn.disabled = false;
+    });
+  }
+
+  (function initRsvpSearch() {
+    var nameInput = document.getElementById("name");
+    var list = document.getElementById("guest-suggestions");
+    if (!nameInput || !list) return;
+    fetch("guests.json").then(function (r) { return r.json(); }).then(function (data) {
+      RSVP_GUESTS = Array.isArray(data) ? data : [];
+    }).catch(function () {
+      RSVP_GUESTS = [];
+      document.getElementById("rsvp-status").textContent = "Could not load the guest list.";
+    });
+    nameInput.addEventListener("input", function () {
+      if (selectedGuest && nameInput.value != selectedGuest.name) clearGuestSelection();
+      showSuggestions(nameInput.value);
+    });
+    nameInput.addEventListener("focus", function () {
+      if (nameInput.value.trim()) showSuggestions(nameInput.value);
+    });
+    list.addEventListener("click", function (ev) {
+      var btn = ev.target.closest("button[data-guest-id]");
+      if (!btn) return;
+      var guest = RSVP_GUESTS.find(function (g) { return g.id === btn.getAttribute("data-guest-id"); });
+      if (guest) selectGuest(guest);
+    });
+    document.addEventListener("click", function (ev) {
+      if (!ev.target.closest(".form-group-search")) list.hidden = true;
+    });
+    setDetailsLocked(true);
+  })();
+
 </script>
 
 <script>

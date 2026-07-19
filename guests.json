@@ -1,0 +1,26 @@
+[
+  {
+    "id": "tony",
+    "name": "Tony",
+    "partyId": "tony-annmarie",
+    "partyLabel": "Tony & Ann-Marie"
+  },
+  {
+    "id": "ann-marie",
+    "name": "Ann-Marie",
+    "partyId": "tony-annmarie",
+    "partyLabel": "Tony & Ann-Marie"
+  },
+  {
+    "id": "joe",
+    "name": "Joe",
+    "partyId": "joe-bansri",
+    "partyLabel": "Joe & Bansri"
+  },
+  {
+    "id": "bansri",
+    "name": "Bansri",
+    "partyId": "joe-bansri",
+    "partyLabel": "Joe & Bansri"
+  }
+]
