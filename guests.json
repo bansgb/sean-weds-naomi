@@ -450,15 +450,15 @@
   {
     "id": "daisy-oliver",
     "name": "Daisy Oliver",
-    "partyId": "daisy-oliver-and-jake",
-    "partyLabel": "Daisy Oliver and Jake",
+    "partyId": "daisy-oliver-and-jake-du-toit",
+    "partyLabel": "Daisy Oliver and Jake Du Toit",
     "guestType": "day"
   },
   {
-    "id": "jake",
-    "name": "Jake",
-    "partyId": "daisy-oliver-and-jake",
-    "partyLabel": "Daisy Oliver and Jake",
+    "id": "jake-du-toit",
+    "name": "Jake Du Toit",
+    "partyId": "daisy-oliver-and-jake-du-toit",
+    "partyLabel": "Daisy Oliver and Jake Du Toit",
     "guestType": "day"
   },
   {

@@ -829,9 +829,18 @@
       display: block;
     }
 
-    .gallery-item img[src*="naomi-sean-friends"],
-    .gallery-item img[src*="naomi-sean-race"] {
+    .gallery-item img[src*="naomi-sean-friends"] {
       object-position: top center;
+    }
+
+    .gallery-item--from-bottom img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
+      object-position: center bottom;
     }
 
 
@@ -1180,7 +1189,7 @@
     <div class="gallery-item fade-in"><img src="photos/gallery-08.jpeg" alt=""></div>
     <div class="gallery-item fade-in"><img src="photos/gallery-11.jpeg" alt=""></div>
     <div class="gallery-item fade-in"><img src="photos/naomi-sean-friends.png" alt=""></div>
-    <div class="gallery-item fade-in"><img src="photos/naomi-sean-race.png" alt=""></div>
+    <div class="gallery-item gallery-item--from-bottom fade-in"><img src="photos/naomi-sean-race.png" alt=""></div>
   </div>
 </section>
 
