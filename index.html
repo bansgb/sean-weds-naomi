@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Naomi and Sean</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -188,22 +188,6 @@
     nav.scrolled a { color: var(--charcoal); }
     nav a:hover { color: var(--gold); }
 
-    nav .nav-monogram {
-      display: flex;
-      align-items: center;
-      line-height: 0;
-    }
-
-    nav .nav-monogram img {
-      height: 1.4rem;
-      width: auto;
-      display: block;
-    }
-
-    nav a.nav-monogram:hover img {
-      opacity: 0.82;
-    }
-
     /* ── Hero ── */
     .hero {
       height: 100vh;
@@ -295,45 +279,6 @@
       color: inherit;
     }
 
-    .hero-tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.3rem;
-      margin-top: 1rem;
-      font-weight: 500;
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 50px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      z-index: 2;
-    }
-
-    .scroll-indicator span {
-      font-size: 0.65rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--text-light);
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: var(--charcoal);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
-      50% { opacity: 1; transform: scaleY(1); }
-    }
-
     /* ── Sections ── */
     section {
       padding: 3rem 4rem;
@@ -416,151 +361,6 @@
     .accent-band .section-title { color: #fff; }
     .accent-band .section-divider { background: var(--gold-light); }
     .accent-band .body-text { color: rgba(255,255,255,0.9); }
-
-    /* ── Timeline ── */
-    .timeline {
-      position: relative;
-      max-width: 700px;
-      margin: 0 auto;
-      padding-left: 2rem;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: var(--sage-light);
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 3rem;
-      padding-left: 2rem;
-    }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: -2.35rem;
-      top: 0.5rem;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--sage);
-      border: 2px solid var(--cream);
-    }
-
-    .timeline-year {
-      font-size: 0.7rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gold);
-      font-weight: 500;
-      margin-bottom: 0.3rem;
-    }
-
-    .timeline-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      color: var(--charcoal);
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-    }
-
-    .timeline-text {
-      font-size: 0.9rem;
-      line-height: 1.8;
-      color: var(--text-light);
-    }
-
-    /* ── Wedding Party Cards ── */
-    .party-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .party-card {
-      text-align: center;
-      padding: 2.5rem 1.5rem;
-      background: var(--warm-white);
-      border: 1px solid rgba(197, 165, 90, 0.15);
-      border-radius: 2px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .party-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-    }
-
-    .party-card .card-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .party-card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: var(--charcoal);
-      margin-bottom: 0.2rem;
-    }
-
-    .party-card .card-role {
-      font-size: 0.65rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--sage);
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
-
-    .party-card p {
-      font-size: 0.85rem;
-      color: var(--text-light);
-      line-height: 1.7;
-    }
-
-    /* ── Schedule ── */
-    .schedule-list {
-      max-width: 700px;
-      margin: 0 auto;
-      list-style: none;
-    }
-
-    .schedule-item {
-      display: flex;
-      align-items: baseline;
-      padding: 1.2rem 0;
-      border-bottom: 1px solid rgba(156, 175, 136, 0.15);
-    }
-
-    .schedule-time {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: var(--sage-dark);
-      min-width: 110px;
-    }
-
-    .schedule-event h4 {
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--charcoal);
-      letter-spacing: 1px;
-    }
-
-    .schedule-event p {
-      font-size: 0.8rem;
-      color: var(--text-light);
-      margin-top: 0.2rem;
-    }
 
     /* ── FAQ ── */
     .faq-list {
@@ -1079,14 +879,11 @@
       nav ul { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
       nav a { font-size: 0.65rem; letter-spacing: 2px; }
       section { padding: 2rem 1.5rem; max-width: 100%; }
-      .schedule-item { flex-direction: column; }
-      .schedule-time { margin-bottom: 0.3rem; }
       .hero { padding: 2rem 1rem; }
     }
 
     @media (max-width: 480px) {
       nav ul { gap: 0.8rem; }
-      .nav-hide-mobile { display: none; }
     }
   </style>
 </head>
