@@ -3,28 +3,28 @@
     "id": "tony-gleeson",
     "name": "Tony Gleeson",
     "partyId": "tony-and-ann-marie",
-    "partyLabel": "Tony and Ann-Marie",
+    "partyLabel": "Tony and Ann-Marie Gleeson",
     "guestType": "day"
   },
   {
     "id": "ann-marie-gleeson",
     "name": "Ann-Marie Gleeson",
     "partyId": "tony-and-ann-marie",
-    "partyLabel": "Tony and Ann-Marie",
+    "partyLabel": "Tony and Ann-Marie Gleeson",
     "guestType": "day"
   },
   {
     "id": "joe-gleeson-buddhdev",
     "name": "Joe Gleeson-Buddhdev",
     "partyId": "joe-and-bansri",
-    "partyLabel": "Joe and Bansri",
+    "partyLabel": "Joe and Bansri Gleeson-Buddhdev",
     "guestType": "day"
   },
   {
     "id": "bansri-gleeson-buddhdev",
     "name": "Bansri Gleeson-Buddhdev",
     "partyId": "joe-and-bansri",
-    "partyLabel": "Joe and Bansri",
+    "partyLabel": "Joe and Bansri Gleeson-Buddhdev",
     "guestType": "day"
   },
   {
@@ -87,21 +87,28 @@
     "id": "kerry-gleeson",
     "name": "Kerry Gleeson",
     "partyId": "kerry-and-charlie",
-    "partyLabel": "Kerry and Charlie",
+    "partyLabel": "Kerry Gleeson and Charlie Idiens",
     "guestType": "day"
   },
   {
     "id": "charlie-idiens",
     "name": "Charlie Idiens",
     "partyId": "kerry-and-charlie",
-    "partyLabel": "Kerry and Charlie",
+    "partyLabel": "Kerry Gleeson and Charlie Idiens",
     "guestType": "day"
   },
   {
     "id": "sophie-stones",
     "name": "Sophie Stones",
-    "partyId": "sophie-stones",
-    "partyLabel": "Sophie Stones",
+    "partyId": "sophie-stones-and-rob-lovell",
+    "partyLabel": "Sophie Stones and Rob Lovell",
+    "guestType": "day"
+  },
+  {
+    "id": "rob-lovell",
+    "name": "Rob Lovell",
+    "partyId": "sophie-stones-and-rob-lovell",
+    "partyLabel": "Sophie Stones and Rob Lovell",
     "guestType": "day"
   },
   {
@@ -156,15 +163,8 @@
   {
     "id": "will-burn",
     "name": "Will Burn",
-    "partyId": "will-and-bianca-burn",
-    "partyLabel": "Will and Bianca Burn",
-    "guestType": "day"
-  },
-  {
-    "id": "bianca-burn",
-    "name": "Bianca Burn",
-    "partyId": "will-and-bianca-burn",
-    "partyLabel": "Will and Bianca Burn",
+    "partyId": "will-burn",
+    "partyLabel": "Will Burn",
     "guestType": "day"
   },
   {
@@ -436,15 +436,8 @@
   {
     "id": "jack-oliver",
     "name": "Jack Oliver",
-    "partyId": "jack-oliver-and-tasha",
-    "partyLabel": "Jack Oliver and Tasha",
-    "guestType": "day"
-  },
-  {
-    "id": "tasha",
-    "name": "Tasha",
-    "partyId": "jack-oliver-and-tasha",
-    "partyLabel": "Jack Oliver and Tasha",
+    "partyId": "jack-oliver",
+    "partyLabel": "Jack Oliver",
     "guestType": "day"
   },
   {
