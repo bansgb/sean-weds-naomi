@@ -378,6 +378,13 @@
     "guestType": "day"
   },
   {
+    "id": "hannah-priest",
+    "name": "Hannah Priest",
+    "partyId": "hannah-priest",
+    "partyLabel": "Hannah Priest",
+    "guestType": "day"
+  },
+  {
     "id": "sal-priest",
     "name": "Sal Priest",
     "partyId": "sal-and-richard-priest",
