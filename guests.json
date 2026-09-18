@@ -628,5 +628,19 @@
     "partyId": "debbie-and-richard-taylor",
     "partyLabel": "Debbie and Richard Taylor",
     "guestType": "day"
+  },
+  {
+    "id": "matthew-stocker",
+    "name": "Matthew Stocker",
+    "partyId": "matthew-stocker",
+    "partyLabel": "Matthew Stocker",
+    "guestType": "day"
+  },
+  {
+    "id": "lilian-sztankov",
+    "name": "Lilian Sztankov",
+    "partyId": "lilian-sztankov",
+    "partyLabel": "Lilian Sztankov",
+    "guestType": "day"
   }
 ]
